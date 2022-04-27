@@ -1,0 +1,33 @@
+namespace Twinster.Core
+{
+    public enum TwinsEnum
+    {
+        NoTwin,
+        TwinA,
+        TwinB,
+        TwinC,
+        TwinD,
+        TwinE,
+        TwinF,
+        TwinG,
+        TwinH,
+        TwinI,
+        TwinJ,
+        TwinK,
+        TwinL,
+        TwinM,
+        TwinN,
+        TwinO,
+        TwinP,
+        TwinQ,
+        TwinR,
+        TwinS,
+        TwinT,
+        TwinU,
+        TwinV,
+        TwinW,
+        TwinX,
+        TwinY,
+        TwinZ
+    }
+}
