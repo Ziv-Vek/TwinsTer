@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Slot
+  - Button
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Shining
   - Water
   - UI
   - ThemeBackground
@@ -39,6 +40,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Shining
+    uniqueID: 3459858737
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

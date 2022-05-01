@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4037491def1b846b75d42de8dec16b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bottomScreenBorder: 0.05
-  upperScreenBorder: 0.85
-  rightScreenBorder: 0.97
-  leftScreenBorder: 0.03
+  bottomScreenBorder: 0.1
+  upperScreenBorder: 0.75
+  rightScreenBorder: 0.95
+  leftScreenBorder: 0.05

@@ -14,6 +14,7 @@ namespace Twinster.Selection
         
         Slot previousSlot = null;     // serialized for debugging
         Camera mainCamera;
+        bool isSelectionDisabled = false;
 
         private void Awake() {
             mainCamera = Camera.main;
@@ -21,17 +22,28 @@ namespace Twinster.Selection
 
         void Update()
         {
+            if (isSelectionDisabled) return;
             if (!Touchscreen.current.primaryTouch.press.isPressed) return;
             
+            GetSelectionInput();
+        }
+
+        public void DisableSelection(bool disableSelection)
+        {
+            isSelectionDisabled = disableSelection;
+        }
+
+        private void GetSelectionInput()
+        {
             Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
             Vector3 worldPosition = mainCamera.ScreenToWorldPoint(touchPosition);
-            
+
             RaycastHit hit;
             bool hasHit = Physics.Raycast(worldPosition, mainCamera.transform.forward, out hit, 40);
 
             if (hasHit && hit.collider.CompareTag("Slot"))
             {
-                if (hit.collider.GetComponent<Slot>() == null) 
+                if (hit.collider.GetComponent<Slot>() == null)
                 {
                     Debug.LogError("The hitted slot object does not have a Slot.cs");
                     return;
@@ -40,12 +52,6 @@ namespace Twinster.Selection
                 Slot selectedSlot = hit.collider.GetComponent<Slot>();
                 ProcessSelection(selectedSlot);
             }
-            else
-            {
-                Debug.Log("Nothing");
-                return;
-            }
-
         }
 
         private void ProcessSelection(Slot selectedSlot)
@@ -99,11 +105,6 @@ namespace Twinster.Selection
             Destroy(selectedSlot.gameObject);
             previousSlot = null;
         }
-
-        // private void PaintSlotBackground(Slot)
-        // {PaintSlotAsSelected
-        //     PaintSlotBackground()
-        // }
 
         private void PaintSlotBackground(Slot slot)
         {
