@@ -48,7 +48,7 @@ namespace Twinster.Menus
 
         private void LoadGame()
         {
-            FindObjectOfType<LevelLoader>().LoadGame();
+            FindObjectOfType<LevelLoader>().StartGame();
         }
 
 

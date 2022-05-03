@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Twinster.Core;
+using Twinster.Selection;
 
 namespace Twinster.UI
 {
@@ -25,6 +26,14 @@ namespace Twinster.UI
             }
 
             UpdateCounter();
+        }
+
+        private void OnEnable() {
+            SlotsSelectionHandler.successfulTwins += ReduceRequiredTwins;
+        }
+
+        private void OnDisable() {
+            SlotsSelectionHandler.successfulTwins -= ReduceRequiredTwins;
         }
 
         private void UpdateCounter()

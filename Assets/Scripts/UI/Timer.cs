@@ -74,8 +74,7 @@ namespace Twinster.UI
 
         private void ProcessTimeOut()
         {
-            //  Add time out sequence
-            Debug.Log("ran out of time");
+            FindObjectOfType<LevelSettings>().ProcessLoseCondition();
         }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Slot
   - Button
+  - SlotMask
   layers:
   - Default
   - TransparentFX
@@ -51,4 +52,10 @@ TagManager:
     locked: 0
   - name: ThemeSprites
     uniqueID: 2178494319
+    locked: 0
+  - name: Tutorial
+    uniqueID: 2816501133
+    locked: 0
+  - name: TutorialText
+    uniqueID: 549142475
     locked: 0

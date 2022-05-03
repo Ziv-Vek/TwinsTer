@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Twinster.Selection;
 using Twinster.UI;
 using UnityEngine;
+using Twinster.Bank;
 
 namespace Twinster.Core
 {
@@ -15,8 +16,8 @@ namespace Twinster.Core
         [SerializeField] int numberOfSingles = 0;
         public int NumberOfSingles { get { return numberOfSingles; } }
         [Tooltip("The number of twins that will appear in the level")]
-        [SerializeField] int numberOfTwins = 0;
-        public int NumberOfTwins { get { return numberOfSingles; } }
+        [SerializeField] int numberOfTwinsPopulated = 0;
+        public int NumberOfTwinsPopulated { get { return numberOfTwinsPopulated; } }
         [Tooltip("The number of twins player needs to find in order to win the level")]
         [SerializeField] int requiredNumOfTwins = 0;
         public int RequiredNumOfTwins { get { return requiredNumOfTwins; } }
@@ -31,21 +32,36 @@ namespace Twinster.Core
         [SerializeField] GameObject winLabel;
         [SerializeField] GameObject loseLabel;
 
-        int initialRequiredTwins = 1;
+        int requiredTwinsCoundown = 1;
 
         private void Start() {
-            if (requiredNumOfTwins > NumberOfTwins)
+            if (requiredNumOfTwins > numberOfTwinsPopulated)
             {
                 Debug.LogError("Number of twins required is higher then number of twins. Check Level Settings");
             }
 
-            initialRequiredTwins = requiredNumOfTwins;
+            requiredTwinsCoundown = requiredNumOfTwins;
+        }
+
+        private void OnEnable() {
+            SlotsSelectionHandler.successfulTwins += ReduceRequiredTwins;
+        }
+
+        private void OnDisable() {
+            SlotsSelectionHandler.successfulTwins -= ReduceRequiredTwins;
+        }
+
+        public void ProcessLoseCondition()
+        {
+            FindObjectOfType<SlotsSelectionHandler>().DisableSelection(true);
+            FindObjectOfType<Timer>().DisableCoundown(true);
+            loseLabel.SetActive(true);
         }
 
         public void ReduceRequiredTwins()
         {
-            requiredNumOfTwins--;
-            if (requiredNumOfTwins <= 0)
+            requiredTwinsCoundown--;
+            if (requiredTwinsCoundown <= 0)
             {
                 ProcessWinCondition();
             }
@@ -61,6 +77,7 @@ namespace Twinster.Core
 
             FindObjectOfType<SlotsSelectionHandler>().DisableSelection(true);
             FindObjectOfType<Timer>().DisableCoundown(true);
+            FindObjectOfType<StarsBank>().DepositStars(requiredNumOfTwins);
             winLabel.SetActive(true);
         }
     }

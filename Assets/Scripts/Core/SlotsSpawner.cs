@@ -28,7 +28,7 @@ namespace Twinster.Core
             gridManager = FindObjectOfType<GridManager>();
             spriteBank = FindObjectOfType<SpriteBank>();
             numberOfSingles = FindObjectOfType<LevelSettings>().NumberOfSingles;
-            numberOfTwins = FindObjectOfType<LevelSettings>().NumberOfTwins;
+            numberOfTwins = FindObjectOfType<LevelSettings>().NumberOfTwinsPopulated;
             twinsEnum = 0;
         }
 
@@ -40,7 +40,7 @@ namespace Twinster.Core
             }
             if (numberOfTwins == 0)
             {
-                numberOfTwins = FindObjectOfType<LevelSettings>().NumberOfTwins;
+                numberOfTwins = FindObjectOfType<LevelSettings>().NumberOfTwinsPopulated;
             }
 
             CheckForErrorsInLevelConfigurations();

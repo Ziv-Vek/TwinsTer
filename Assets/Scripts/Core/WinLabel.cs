@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Twinster.UI;
+using System;
+using Twinster.Bank;
+using Twinster.Scenes;
 
 namespace Twinster.Core
 {
@@ -11,28 +14,48 @@ namespace Twinster.Core
         [Space(5)]
         [Header("Config:")]
         [Space(3)]
-        [SerializeField] float timerCountdownSpeed = 20f;
+        [SerializeField] float timerCountdownSpeed = 40f;
+        [SerializeField] float secondsToRecieveStar = 15f;
+        [SerializeField] float delayCountdown = 0.2f;
+
         [Space(5)]
         [Header("Cached References:")]
         [Space(3)]
         [SerializeField] TMP_Text timerText;
         [SerializeField] TMP_Text starsText;
-        [SerializeField] GameObject littleStarsPrefab, shiningBackground;
-
+        [SerializeField] GameObject littleStarsPrefab, shiningBackground, bigStar, nextButton;
 
         float remainingTimeToDisplay = 0;
+        int starsGainFromTimer = 0;
+        bool isCoundownFinished = false;
 
         void Start()
         {
             LeanTween.rotateAround(shiningBackground, Vector3.forward, 360, 30f).setLoopClamp();
-
+            UpdateStarsDisplay();
             remainingTimeToDisplay = FindObjectOfType<Timer>().GetTimeToDisplay();
-            DisplayTime();
+            starsGainFromTimer = Mathf.FloorToInt(DisplayTime());
+            FindObjectOfType<LevelLoader>().SaveLevel();
 
             StartCoroutine("ReduceRemainingTime");
+
         }
 
-        private void DisplayTime()
+        public void NextLevel()
+        {
+            if (!isCoundownFinished)
+            {
+                FindObjectOfType<StarsBank>().DepositStars(starsGainFromTimer);
+            }
+            FindObjectOfType<LevelLoader>().LoadNextLevel();
+        }
+
+        private void UpdateStarsDisplay()
+        {
+            starsText.text = FindObjectOfType<StarsBank>().Stars.ToString();
+        }
+
+        private float DisplayTime()
         {
             if (remainingTimeToDisplay < 0)
             {
@@ -42,24 +65,51 @@ namespace Twinster.Core
             float minutes = Mathf.FloorToInt(remainingTimeToDisplay / 60);
             float seconds = Mathf.FloorToInt(remainingTimeToDisplay % 60);
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+            return minutes;
         }
 
         IEnumerator ReduceRemainingTime()
         {
-            yield return new WaitForSeconds(2f);
+            float seconds = 0;
+
+            yield return new WaitForSeconds(delayCountdown);
             
-            Debug.Log("reduction code started");
             while (remainingTimeToDisplay > 0)
             {
                 remainingTimeToDisplay -= Time.deltaTime * timerCountdownSpeed;
+                seconds += Time.deltaTime * timerCountdownSpeed;
+                if (seconds >= secondsToRecieveStar)
+                {
+                    GainCounterStar();
+                    seconds = 0;
+                }
                 DisplayTime();
                 yield return null;
             }
-            Debug.Log("countdown finished");
+
+            isCoundownFinished = true;
         }
 
+        private void GainCounterStar()
+        {
+            GameObject littleStar = Instantiate(littleStarsPrefab, timerText.transform.position, Quaternion.identity);
+            littleStar.transform.SetParent(gameObject.transform);
+            LeanTween.move(littleStar, bigStar.transform.position, 1f).setOnComplete( () => {
+                FindObjectOfType<StarsBank>().DepositStars(1);
+                starsGainFromTimer--;
+                BigStarTween();
+                Destroy(littleStar);
+                UpdateStarsDisplay();
+                } );
+        }
 
-
+        private void BigStarTween()
+        {
+            LeanTween.scale(bigStar, new Vector3(0.9f, 0.9f, 1), 0.1f).setOnComplete( () => {
+                LeanTween.scale(bigStar, new Vector3(0.8f, 0.8f, 1), 0.1f);
+            });
+        }
     }
 }
 

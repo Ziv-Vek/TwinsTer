@@ -16,6 +16,9 @@ namespace Twinster.Selection
         Camera mainCamera;
         bool isSelectionDisabled = false;
 
+        public delegate void SuccessfulTwins();
+        public static SuccessfulTwins successfulTwins;
+
         private void Awake() {
             mainCamera = Camera.main;
         }
@@ -98,12 +101,12 @@ namespace Twinster.Selection
 
         private void ProcessSuccessfulTwin(Slot selectedSlot)
         {
-            FindObjectOfType<TwinsCounterDisplay>().ReduceRequiredTwins();
-            FindObjectOfType<LevelSettings>().ReduceRequiredTwins();
-            RemoveSlotBackground();
+            successfulTwins();
             Destroy(previousSlot.gameObject);
             Destroy(selectedSlot.gameObject);
+            RemoveSlotBackground();
             previousSlot = null;
+            
         }
 
         private void PaintSlotBackground(Slot slot)
