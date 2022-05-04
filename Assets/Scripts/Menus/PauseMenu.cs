@@ -10,7 +10,7 @@ namespace Twinster.Menus
     {
         [SerializeField] GameObject settingsMenuCanvas = null;
 
-        const string MAIN_MENU = "Main Menu";
+        const string MAIN_MENU = "__Main Menu";
 
         public void UnPause()
         {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Twinster.Audio;
 
 namespace Twinster.Menus
 {
@@ -7,7 +8,19 @@ namespace Twinster.Menus
     {
         [SerializeField] GameObject canvasWhenCloses = null;
         [SerializeField] GameObject privacyMenuCanvas = null;
-        [SerializeField] Image SFXCancelBar;
+        [SerializeField] Image SFXCancelBar, musicCancelBar;
+
+        bool isMusicEnabled;
+        bool isSFXEnabled;
+
+        private void OnEnable() {
+            isMusicEnabled = FindObjectOfType<MusicManager>().GetIsMusicPlaying();
+        }
+
+        void PlaceCancelBars()
+        {
+            musicCancelBar.enabled = isMusicEnabled;
+        }
 
         public void ShowPreviousMenu()
         {
@@ -34,7 +47,13 @@ namespace Twinster.Menus
         public void ToggleSFX()
         {
             SFXCancelBar.enabled = !SFXCancelBar.enabled;
+            
+        }
 
+        public void ToggleMusic()
+        {
+            musicCancelBar.enabled = !musicCancelBar.enabled;
+            //FindObjectOfType<MusicManager>
         }
     }
 }

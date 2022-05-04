@@ -10,10 +10,6 @@ namespace Twinster.Scenes
         const string PLAYER_LEVEL = "playerLevel";
 
         int savedLevel = 0;
-        
-        private void Awake() {
-            PlayerPrefs.DeleteKey(PLAYER_LEVEL);
-        }
 
         public void StartGame()
         {

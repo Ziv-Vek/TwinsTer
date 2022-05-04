@@ -52,6 +52,11 @@ namespace Twinster.Core
 
         private void UpdateStarsDisplay()
         {
+            if (FindObjectOfType<StarsBank>() == null)
+            {
+                Debug.LogError("No StarBank is found in the scene");
+                return;
+            }
             starsText.text = FindObjectOfType<StarsBank>().Stars.ToString();
         }
 
