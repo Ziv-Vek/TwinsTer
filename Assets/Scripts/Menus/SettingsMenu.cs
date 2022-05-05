@@ -13,13 +13,10 @@ namespace Twinster.Menus
         bool isMusicEnabled;
         bool isSFXEnabled;
 
-        private void OnEnable() {
-            isMusicEnabled = FindObjectOfType<MusicManager>().GetIsMusicPlaying();
-        }
-
-        void PlaceCancelBars()
-        {
-            musicCancelBar.enabled = isMusicEnabled;
+        private void Start() {
+            isMusicEnabled = FindObjectOfType<MusicManager>().GetIsMusicEnabled();
+            isSFXEnabled = FindObjectOfType<SoundEffectsManager>().GetIsSFXEnabled();
+            PlaceCancelBars();
         }
 
         public void ShowPreviousMenu()
@@ -46,14 +43,22 @@ namespace Twinster.Menus
 
         public void ToggleSFX()
         {
-            SFXCancelBar.enabled = !SFXCancelBar.enabled;
-            
+            isSFXEnabled = !isSFXEnabled;
+            PlaceCancelBars();
+            FindObjectOfType<SoundEffectsManager>().ToggleSFX();
         }
 
         public void ToggleMusic()
         {
-            musicCancelBar.enabled = !musicCancelBar.enabled;
-            //FindObjectOfType<MusicManager>
+            isMusicEnabled = !isMusicEnabled;
+            PlaceCancelBars();
+            FindObjectOfType<MusicManager>().ToggleMusic();
+        }
+
+        void PlaceCancelBars()
+        {
+            musicCancelBar.enabled = !isMusicEnabled;
+            SFXCancelBar.enabled = !isSFXEnabled;
         }
     }
 }

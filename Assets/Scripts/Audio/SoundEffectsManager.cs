@@ -10,20 +10,14 @@ namespace Twinster.Audio
     {
         [SerializeField] AudioClip successfullTwin, starsFalling;
         
-        // const string SFX_ENABLED = "SFXenabled";
+        const string SFX_ENABLED = "SFXenabled";
         AudioSource myAudioSource = null;
         public static SoundEffectsManager instance;
-        
-        private void OnEnable() {
-            SlotsSelectionHandler.successfulTwins += PlayTwinSFX;
-        }
 
-        private void OnDisable() {
-            SlotsSelectionHandler.successfulTwins -= PlayTwinSFX;
-        }
+        bool isSFXEnabled = true;
 
-#region SINGLTON
         private void Awake() {
+#region SINGLTON
             if (instance != null && instance != this)
             {
                 Destroy(gameObject);
@@ -32,40 +26,62 @@ namespace Twinster.Audio
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-            
 #endregion SINGLTON            
+
             myAudioSource = GetComponent<AudioSource>();
+
+            if (!PlayerPrefs.HasKey(SFX_ENABLED))
+            {
+                PlayerPrefs.SetInt(SFX_ENABLED, 1);
+                isSFXEnabled = true;
+            }
+            else
+            {
+                if (PlayerPrefs.GetInt(SFX_ENABLED, 1) == 1)
+                {
+                    isSFXEnabled = true;
+                }
+                else
+                {
+                    isSFXEnabled = false;
+                }
+            }
+        }
+
+        private void OnEnable() {
+            SlotsSelectionHandler.successfulTwins += PlayTwinSFX;
+        }
+
+        private void OnDisable() {
+            SlotsSelectionHandler.successfulTwins -= PlayTwinSFX;
+        }
+
+        public bool GetIsSFXEnabled()
+        {
+            return isSFXEnabled;
+        }
+
+        public void ToggleSFX()
+        {
+            isSFXEnabled = !isSFXEnabled;
+            
+            if (isSFXEnabled)
+            {
+                PlayerPrefs.SetInt(SFX_ENABLED, 1);
+            }
+            else
+            {
+                PlayerPrefs.SetInt(SFX_ENABLED, 0);
+            }
         }
 
         void PlayTwinSFX()
         {
-            myAudioSource.PlayOneShot(successfullTwin);
+            if (isSFXEnabled)
+            {
+                myAudioSource.PlayOneShot(successfullTwin);
+            }
         }
-
-        // private void Start() {
-        //     InitializeSFX();
-        // }
-
-        
-
-        // public void ToggleSoundEffects()
-        // {
-        //     if (!PlayerPrefs.HasKey(SFX_ENABLED)
-        //     {
-        //         InitializeSFX();
-        //     }
-        //     //.GetInt("SFXenabled") == null 
-        //     )
-        //     if (PlayerPrefs.SetInt("")
-        // }
-        
-        // private void InitializeSFX()
-        // {
-        //     if (!PlayerPrefs.HasKey(SFX_ENABLED))
-        //     {
-        //         PlayerPrefs.SetInt(SFX_ENABLED, 1);
-        //     }
-        // }
 
         
     }

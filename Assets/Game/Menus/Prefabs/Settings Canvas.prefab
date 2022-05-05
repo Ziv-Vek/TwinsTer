@@ -259,6 +259,7 @@ MonoBehaviour:
   privacyMenuCanvas: {fileID: 0}
   SFXCancelBar: {fileID: 1621034293745805139}
   musicCancelBar: {fileID: 1621034292943243723}
+  isMusicEnabled: 1
 --- !u!1 &1621034291988457728
 GameObject:
   m_ObjectHideFlags: 0

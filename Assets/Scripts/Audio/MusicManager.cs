@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Twinster.Core;
 
 namespace Twinster.Audio
 {
@@ -10,9 +11,10 @@ namespace Twinster.Audio
         const string MUSIC_ENABLED = "musicEnabled";
         public static MusicManager instance;
 
+        bool isMusicEnabled = true;
 
-#region SINGLTON
         private void Awake() {
+#region SINGLTON
             if (instance != null && instance != this)
             {
                 Destroy(gameObject);
@@ -23,59 +25,90 @@ namespace Twinster.Audio
             }
             
 #endregion SINGLTON            
+            
             myAudioSource = GetComponent<AudioSource>();
-        }
 
-        private void Start() {
-            if (myAudioSource.isPlaying == false)
+            if (!PlayerPrefs.HasKey(MUSIC_ENABLED))
             {
-                myAudioSource.Play();
+                PlayerPrefs.SetInt(MUSIC_ENABLED, 1);
+                isMusicEnabled = true;
+            }
+            else
+            {
+                if (PlayerPrefs.GetInt(MUSIC_ENABLED, 1) == 1)
+                {
+                    isMusicEnabled = true;
+                }
+                else
+                {
+                    isMusicEnabled = false;
+                }
             }
         }
 
-        public bool GetIsMusicPlaying()
-        {
-            bool isMusicPlaying = myAudioSource.isPlaying;
-            return isMusicPlaying;
+        private void Start() {
+            if (isMusicEnabled)
+            {
+                PlayMusic();
+            }
+            else
+            {
+                StopMusic();
+            }
         }
 
-        // private void Start() {
-        //     if (!PlayerPrefs.HasKey(MUSIC_ENABLED))
-        //     {
-        //         PlayerPrefs.SetInt(MUSIC_ENABLED, 1);
-        //         if (myAudioSource.isPlaying == false)
-        //         {
-        //             myAudioSource.Play();
-        //         }
-        //         else
-        //         {
-        //             myAudioSource.Play();
-        //         }
-        //     }
-        //     if (myAudioSource.isPlaying == false)
-        //     {
-        //         myAudioSource.Play();
-        //     }
-        // }
+        private void OnEnable() {
+            LevelSettings.eventLevelComplete += PauseMusic;
+            LevelSettings.eventLevelLost += PauseMusic;
+        }
 
-        // public void ToggleMusic(bool isMusicEnabled)
-        // {
-        //     if (myAudioSource == null)
-        //     {
-        //         Debug.LogError("AudioSource component not set");
-        //         myAudioSource = GetComponent<AudioSource>();
-        //     }
+        private void OnDisable() {
+            LevelSettings.eventLevelComplete -= PauseMusic;
+            LevelSettings.eventLevelLost -= PauseMusic;
+        }
 
-        //     if (isMusicEnabled)
-        //     {
-        //         myAudioSource.Pause();
-        //     }
-        //     else
-        //     {
-        //         myAudioSource.Pause();
-        //     }
+        public bool GetIsMusicEnabled()
+        {
+            return isMusicEnabled;
+        }
 
+        public void ToggleMusic()
+        {
+            if (isMusicEnabled)
+            {
+                StopMusic();
+            }
+            else
+            {
+                PlayMusic();
+            }
+        }
 
-        // }
+        public void UnPauseMusic()
+        {
+            myAudioSource.UnPause();
+        }
+
+        private void PauseMusic()
+        {
+            if (myAudioSource.isPlaying)
+            {
+                myAudioSource.Pause();
+            }
+        }
+
+        private void StopMusic()
+        {
+            myAudioSource.Stop();
+            isMusicEnabled = false;
+            PlayerPrefs.SetInt(MUSIC_ENABLED, 0);
+        }
+
+        private void PlayMusic()
+        {
+            myAudioSource.Play();
+            isMusicEnabled = true;
+            PlayerPrefs.SetInt(MUSIC_ENABLED, 1);
+        }
     }
 }

@@ -34,6 +34,15 @@ namespace Twinster.Core
 
         int requiredTwinsCoundown = 1;
 
+        public delegate void EventLevelComplete();
+        public static EventLevelComplete eventLevelComplete;
+
+        public delegate void SuccessfulTwins();
+        public static SuccessfulTwins successfulTwins;
+
+        public delegate void EventLevelLost();
+        public static EventLevelLost eventLevelLost;
+
         private void Start() {
             if (requiredNumOfTwins > numberOfTwinsPopulated)
             {
@@ -53,6 +62,8 @@ namespace Twinster.Core
 
         public void ProcessLoseCondition()
         {
+            eventLevelLost();
+            
             FindObjectOfType<SlotsSelectionHandler>().DisableSelection(true);
             FindObjectOfType<Timer>().DisableCoundown(true);
             loseLabel.SetActive(true);
@@ -69,6 +80,8 @@ namespace Twinster.Core
 
         private void ProcessWinCondition()
         {
+            eventLevelComplete();
+
             if (winLabel == null)
             {
                 Debug.LogError("Win Label was not set!");

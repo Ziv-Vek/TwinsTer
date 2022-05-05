@@ -472,6 +472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsCanvas: {fileID: 0}
+  tapText: {fileID: 8345532832092202079}
 --- !u!1 &8345532832092202079
 GameObject:
   m_ObjectHideFlags: 0

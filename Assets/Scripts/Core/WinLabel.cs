@@ -6,6 +6,7 @@ using Twinster.UI;
 using System;
 using Twinster.Bank;
 using Twinster.Scenes;
+using Twinster.Audio;
 
 namespace Twinster.Core
 {
@@ -41,12 +42,14 @@ namespace Twinster.Core
 
         }
 
+        // Called form Unity event (button)
         public void NextLevel()
         {
             if (!isCoundownFinished)
             {
                 FindObjectOfType<StarsBank>().DepositStars(starsGainFromTimer);
             }
+            FindObjectOfType<MusicManager>().UnPauseMusic();
             FindObjectOfType<LevelLoader>().LoadNextLevel();
         }
 
