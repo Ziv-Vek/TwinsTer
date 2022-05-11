@@ -5,8 +5,8 @@ namespace Twinster.Scenes
 {
     public class LevelLoader : MonoBehaviour
     {
-        [SerializeField] int mainMenuIndex = 0;
-        [SerializeField] int firstLevelIndex = 1;
+        [SerializeField] int mainMenuIndex = 1;
+        [SerializeField] int firstLevelIndex = 2;
         const string PLAYER_LEVEL = "playerLevel";
 
         int savedLevel = 0;

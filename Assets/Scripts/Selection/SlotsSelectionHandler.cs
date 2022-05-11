@@ -101,9 +101,10 @@ namespace Twinster.Selection
 
         private void ProcessSuccessfulTwin(Slot selectedSlot)
         {
+            
             successfulTwins();
-            Destroy(previousSlot.gameObject);
-            Destroy(selectedSlot.gameObject);
+            previousSlot.DisappearSlot();
+            selectedSlot.DisappearSlot();
             RemoveSlotBackground();
             previousSlot = null;
             

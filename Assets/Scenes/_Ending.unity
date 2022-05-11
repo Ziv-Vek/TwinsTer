@@ -353,17 +353,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3df3846da21db7e4c8eda269189866d9, type: 3}
---- !u!114 &1633566071 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5194544795558956559, guid: 3df3846da21db7e4c8eda269189866d9, type: 3}
-  m_PrefabInstance: {fileID: 1183314508}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e3b1757f3b26d641882ae94e76bbbe3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &95998263794953154
 RectTransform:
   m_ObjectHideFlags: 0
@@ -443,9 +432,9 @@ GameObject:
   - component: {fileID: 95998263794953165}
   - component: {fileID: 95998263794953164}
   - component: {fileID: 95998263794953167}
-  - component: {fileID: 3229675818580127632}
+  - component: {fileID: 95998263794953168}
   m_Layer: 5
-  m_Name: Win Label
+  m_Name: Ending Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -468,6 +457,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &95998263794953168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95998263794953166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34fdc8792fe805f49b5c841b1e39e786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuIndex: 1
+  shiningBackground: {fileID: 159285689}
+  homeButton: {fileID: 4637036021463661302}
 --- !u!1001 &408438811373554360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -705,9 +709,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1633566071}
-        m_TargetAssemblyTypeName: Twinster.Scenes.LevelLoader, Assembly-CSharp
-        m_MethodName: LoadMainMenu
+      - m_Target: {fileID: 95998263794953168}
+        m_TargetAssemblyTypeName: EndingLabel, Assembly-CSharp
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -867,27 +871,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3229675818580127632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 95998263794953166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6fa130f5078b104dbe1f3c83ffbf12c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerCountdownSpeed: 40
-  secondsToRecieveStar: 15
-  delayCountdown: 0.2
-  timerText: {fileID: 0}
-  starsText: {fileID: 0}
-  littleStarsPrefab: {fileID: 7589814270934105009, guid: a2308a685f4378a4e924a080a270aab9, type: 3}
-  shiningBackground: {fileID: 159285689}
-  bigStar: {fileID: 0}
-  nextButton: {fileID: 0}
 --- !u!224 &4086223901781028421
 RectTransform:
   m_ObjectHideFlags: 0

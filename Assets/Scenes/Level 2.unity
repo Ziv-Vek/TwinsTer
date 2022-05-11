@@ -1303,6 +1303,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Top UI Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 498357159856470390, guid: b398a73fa196cdc4aa1cc30e9e7f3a02, type: 3}
+      propertyPath: m_margin.x
+      value: 143.94838
+      objectReference: {fileID: 0}
+    - target: {fileID: 498357159856470390, guid: b398a73fa196cdc4aa1cc30e9e7f3a02, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2371581880607979490, guid: b398a73fa196cdc4aa1cc30e9e7f3a02, type: 3}
       propertyPath: pauseMenuCanvas
       value: 

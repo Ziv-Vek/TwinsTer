@@ -26,7 +26,7 @@ namespace Twinster.Tutorial
 
         float timer = 0;
         bool isTiming = true;
-        [SerializeField] bool isTapToContinueEnabled = false;      // Serialized for debugging!
+        bool isTapToContinueEnabled = false;
 
         GameObject mask1 = null;
         GameObject mask2 = null;
@@ -76,6 +76,7 @@ namespace Twinster.Tutorial
                     textCanvas.SetActive(true);
                     uiTimerFade.SetActive(true);
                     uiFade.SetActive(true);
+                    DisableBallParticles();
                     Invoke(nameof(PopulateFirstMask), delayTutorialText);
                     break;
                 case 1:
@@ -104,8 +105,6 @@ namespace Twinster.Tutorial
                 case 4:
                     DisplayTextBlock(4);
                     DestroyMasks();
-                    //Destroy(mask1);
-                    //Destroy(mask2);
                     Invoke(nameof(EnableTapping), delayToTapContinueText);
                     break;
                 case 5:
@@ -156,15 +155,23 @@ namespace Twinster.Tutorial
             TextBackgroundTween();
         }
 
+        private void DisableBallParticles()
+        {
+            Slot[] slots = FindObjectsOfType<Slot>();
+            foreach (Slot slot in slots)
+            {
+                slot.SetBallParticle(null);
+            }
+        }
+
         private void PopulateSecondMask()
         {
             Slot[] slots = FindObjectsOfType<Slot>();
             foreach (Slot slot in slots)
             {
-                slot.GetComponent<Collider>().enabled = true;
-
                 if (slot.TwinEnum == TwinsEnum.TwinB)
                 {
+                    slot.GetComponent<Collider>().enabled = true;
                     GameObject mask = Instantiate(slotMaskPrefab, slot.transform.position, Quaternion.identity);
                     mask.transform.SetParent(gameObject.transform);
 

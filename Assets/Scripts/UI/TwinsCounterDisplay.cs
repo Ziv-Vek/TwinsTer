@@ -36,14 +36,6 @@ namespace Twinster.UI
             SlotsSelectionHandler.successfulTwins -= ReduceRequiredTwins;
         }
 
-        private void UpdateCounter()
-        {
-            if (canReduceMoreTwins)
-            {
-                counterDisplay.text = twinsRequired.ToString();
-            }
-        }
-
         public void ReduceRequiredTwins()
         {
             twinsRequired--;
@@ -52,6 +44,33 @@ namespace Twinster.UI
             {
                 canReduceMoreTwins = false;
             }
+        }
+
+        public void TweenScale()
+        {
+            if (LeanTween.isTweening(gameObject))
+            {
+                Invoke("TweenScale", 0.5f);
+            }
+            else
+            {
+                LeanTween.value(gameObject, 100f, 115f, 0.2f).setOnUpdate(ChangeFontSize).setOnComplete( () => {
+                    LeanTween.value(gameObject, 115f, 100f, 0.2f).setOnUpdate(ChangeFontSize).setOnComplete( () => LeanTween.cancel(gameObject) );
+                    });
+            }
+        }
+
+        private void UpdateCounter()
+        {
+            if (canReduceMoreTwins)
+            {
+                counterDisplay.text = twinsRequired.ToString();
+            }
+        }
+
+        private void ChangeFontSize(float value)
+        {
+            counterDisplay.fontSize = value;
         }
     }
 }

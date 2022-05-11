@@ -16,13 +16,13 @@ namespace Twinster.Core
         int numberOfTwins = 0;
         [SerializeField] int fixedZPos = 4;
         [SerializeField] Image themeBackgroundImage = null;
-        [SerializeField] GameObject slotsParent;
-        
+        [SerializeField] GameObject slotsParent;        
 
         public GameObject slotPrefab;
         GridManager gridManager;
         SpriteBank spriteBank;
         TwinsEnum twinsEnum;
+        List<GameObject> slotsToPopulate = new List<GameObject>();
 
         private void Awake() {
             gridManager = FindObjectOfType<GridManager>();
@@ -47,6 +47,7 @@ namespace Twinster.Core
             PopulateBackground();
             PopulateSingleSlots();
             PopulateTwins();
+            PopulateSlots();
 
 
             // randomly pick a sprite from the bank and place instaniate it
@@ -104,7 +105,18 @@ namespace Twinster.Core
             Vector3 coordinates = gridManager.GetPopulationCoordinate(zPos);
             GameObject slot = Instantiate(slotPrefab, coordinates, Quaternion.identity);
             slot.transform.SetParent(slotsParent.transform);
+            TweenSlotScale(slot);
             return slot;
+        }
+
+        private void PopulateSlots()
+        {
+
+        }
+
+        private void TweenSlotScale(GameObject slot)
+        {
+            LeanTween.scale(slot, new Vector3(0.5f, 0.5f, 1), 0.5f).setEase(LeanTweenType.easeOutQuint);
         }
 
         private void AttachTwinMarkEnum (GameObject slot)

@@ -1119,7 +1119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8576473292143328763, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: timerSet
-      value: 80
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8576473292143328763, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: winLabel
@@ -1143,15 +1143,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8576473292143328763, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: numberOfSingles
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8576473292143328763, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: requiredNumOfTwins
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8576473292143328763, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: numberOfTwinsPopulated
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
