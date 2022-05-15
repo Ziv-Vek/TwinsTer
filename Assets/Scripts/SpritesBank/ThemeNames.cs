@@ -1,8 +1,9 @@
 namespace Twinster.Sprites
 {
-    enum ThemeNames
+    public enum ThemeNames
     {
         Generic,
-        Circles
+        Circles,
+        Summer
     }
 }

@@ -5,6 +5,7 @@ using Twinster.Selection;
 using Twinster.UI;
 using UnityEngine;
 using Twinster.Bank;
+using Twinster.Sprites;
 
 namespace Twinster.Core
 {
@@ -13,6 +14,7 @@ namespace Twinster.Core
         [Space(3)]
         [Header("Level Settings:")]
         [Space(3)]
+        [SerializeField] ThemeSets themeSet = ThemeSets.All;
         [SerializeField] int numberOfSingles = 0;
         public int NumberOfSingles { get { return numberOfSingles; } }
         [Tooltip("The number of twins that will appear in the level")]
@@ -44,10 +46,10 @@ namespace Twinster.Core
         public static EventLevelLost eventLevelLost;
 
         private void Start() {
-            if (requiredNumOfTwins > numberOfTwinsPopulated)
-            {
-                Debug.LogError("Number of twins required is higher then number of twins. Check Level Settings");
-            }
+            // if (requiredNumOfTwins > numberOfTwinsPopulated)
+            // {
+            //     Debug.LogError("Number of twins required is higher then number of twins. Check Level Settings");
+            // }
 
             requiredTwinsCoundown = requiredNumOfTwins;
         }
@@ -76,6 +78,11 @@ namespace Twinster.Core
             {
                 ProcessWinCondition();
             }
+        }
+
+        public ThemeSets GetThemeSet()
+        {
+            return themeSet;
         }
 
         private void ProcessWinCondition()

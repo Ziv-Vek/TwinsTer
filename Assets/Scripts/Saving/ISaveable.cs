@@ -1,0 +1,8 @@
+namespace Twinster.Saving
+{
+    public interface ISaveable
+    {
+        object CaptureState();
+        void RestoreState(object state);
+    }
+}

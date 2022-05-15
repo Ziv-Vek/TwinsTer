@@ -7,6 +7,7 @@ namespace Twinster.Scenes
     {
         [SerializeField] int mainMenuIndex = 1;
         [SerializeField] int firstLevelIndex = 2;
+        [SerializeField] int themesStoreIndex = 2;
         const string PLAYER_LEVEL = "playerLevel";
 
         int savedLevel = 0;
@@ -47,6 +48,11 @@ namespace Twinster.Scenes
         public void LoadMainMenu()
         {
             SceneManager.LoadScene(mainMenuIndex);
+        }
+
+        public void LoadThemesStore()
+        {
+            SceneManager.LoadScene(themesStoreIndex);
         }
     }
 }

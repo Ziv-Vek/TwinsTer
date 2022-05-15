@@ -43,24 +43,22 @@ namespace Twinster.Core
                 numberOfTwins = FindObjectOfType<LevelSettings>().NumberOfTwinsPopulated;
             }
 
-            CheckForErrorsInLevelConfigurations();
+            //CheckForErrorsInLevelConfigurations();
             PopulateBackground();
             PopulateSingleSlots();
             PopulateTwins();
-            PopulateSlots();
-
 
             // randomly pick a sprite from the bank and place instaniate it
             // int randomNum = Random.Range(0, spritesBank.Count);
         }
 
-        private void CheckForErrorsInLevelConfigurations()
-        {
-            if ((numberOfSingles + numberOfTwins) > spriteBank.GetBankLengh())
-            {
-                Debug.LogError("The number of single slots and twin slots is larger than the bank size");
-            }
-        }
+        // private void CheckForErrorsInLevelConfigurations()
+        // {
+        //     if ((numberOfSingles + numberOfTwins) > spriteBank.GetBankLengh())
+        //     {
+        //         Debug.LogError("The number of single slots and twin slots is larger than the bank size");
+        //     }
+        // }
 
         private void PopulateBackground()
         {
@@ -107,11 +105,6 @@ namespace Twinster.Core
             slot.transform.SetParent(slotsParent.transform);
             TweenSlotScale(slot);
             return slot;
-        }
-
-        private void PopulateSlots()
-        {
-
         }
 
         private void TweenSlotScale(GameObject slot)

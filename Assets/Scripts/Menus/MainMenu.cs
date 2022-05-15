@@ -51,6 +51,11 @@ namespace Twinster.Menus
             gameObject.SetActive(false);
         }
 
+        public void ShowThemesMenu()
+        {
+            FindObjectOfType<LevelLoader>().LoadThemesStore();
+        }
+
         private void LoadGame()
         {
             FindObjectOfType<LevelLoader>().StartGame();
