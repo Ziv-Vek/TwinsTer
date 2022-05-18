@@ -1057,6 +1057,10 @@ PrefabInstance:
       propertyPath: slotBackground
       value: 
       objectReference: {fileID: 943131683}
+    - target: {fileID: 5989540446801951589, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
+      propertyPath: activeTheme
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7133667912690617777, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: parentSlot
       value: 

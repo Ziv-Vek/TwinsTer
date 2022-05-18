@@ -30,9 +30,9 @@ MonoBehaviour:
     serializationDepthLimit: 64
     assemblyNames:
     - Assembly-CSharp
+    - Assembly-CSharp-firstpass
     - Coffee.SoftMaskForUGUI
     - Cinemachine
-    - Assembly-CSharp-firstpass
     - PsdPlugin
     - Coffee.SoftMaskForUGUI.Editor
     showAdvancedSettings: 1

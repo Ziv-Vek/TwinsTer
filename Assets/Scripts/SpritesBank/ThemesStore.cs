@@ -12,7 +12,7 @@ namespace Twinster.Sprites
         string themeName = null;
 
         private void Start() {
-            FindObjectOfType<SavingWrapper>().Load();
+            //FindObjectOfType<SavingWrapper>().Load();
             //Debug.Log($"Loaded theme is: {}")
         }
 
@@ -33,14 +33,16 @@ namespace Twinster.Sprites
 
         private void SaveSelectedTheme(string themeName)
         {
+            
             this.themeName = themeName;
-            CaptureState();
-            FindObjectOfType<SavingWrapper>().Save();
+            //CaptureState();
+            //FindObjectOfType<SavingWrapper>().Save();
         }
 
         public object CaptureState()
         {
-            return ThemeNames.Generic;
+            Debug.Log($"theme saved is: {themeName}");
+            return themeName;
         }
 
         public void RestoreState(object state)

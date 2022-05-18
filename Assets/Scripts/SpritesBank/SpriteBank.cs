@@ -47,6 +47,7 @@ namespace Twinster.Sprites
             this.themeNameString = themeNameString;
             activeTheme = (ThemeNames)System.Enum.Parse( typeof(ThemeNames), themeNameString );
             CaptureState();
+            FindObjectOfType<SavingWrapper>().Save();
         }
 
         private void PrepareSpriteSetList()

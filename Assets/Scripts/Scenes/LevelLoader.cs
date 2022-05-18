@@ -13,10 +13,12 @@ namespace Twinster.Scenes
 
         int savedLevel = 0;
 
+        private void Start() {
+            FindObjectOfType<SavingWrapper>().Load();
+        }
+
         public void StartGame()
         {
-            FindObjectOfType<SavingWrapper>().Load();
-
             if (PlayerPrefs.GetInt(PLAYER_LEVEL) < firstLevelIndex || !PlayerPrefs.HasKey(PLAYER_LEVEL))
             {
                 PlayerPrefs.SetInt(PLAYER_LEVEL, firstLevelIndex);
@@ -50,7 +52,12 @@ namespace Twinster.Scenes
 
         public void LoadMainMenu()
         {
-            FindObjectOfType<SavingWrapper>().Save();
+            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+            if (savingWrapper != null)
+            {
+                savingWrapper.Save();
+            }
+            
             SceneManager.LoadScene(mainMenuIndex);
         }
 
