@@ -27,6 +27,12 @@ namespace Twinster.Bank
             stars += amount;
             PlayerPrefs.SetInt(STARS_IN_BANK, stars);
         }
+
+        public void WithdrawStars(int amount)
+        {
+            stars -= amount;
+            PlayerPrefs.SetInt(STARS_IN_BANK, stars);
+        }
     }
 }
 

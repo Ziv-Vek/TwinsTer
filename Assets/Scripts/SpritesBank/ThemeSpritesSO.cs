@@ -19,7 +19,6 @@ namespace Twinster.Sprites
         [SerializeField] bool isAvailable = false;
         [Tooltip("Is this is the theme to be used(active)?")]
         [SerializeField] bool isLoaded = false;
-        [SerializeField] int starsCost = 0;
 
         [System.Serializable]
         public class Sets
@@ -79,6 +78,5 @@ namespace Twinster.Sprites
         public bool GetIsLoaded { 
             get { return isLoaded; }
         }
-        
     }
 }

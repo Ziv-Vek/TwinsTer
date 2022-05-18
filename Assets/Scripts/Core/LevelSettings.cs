@@ -39,8 +39,8 @@ namespace Twinster.Core
         public delegate void EventLevelComplete();
         public static EventLevelComplete eventLevelComplete;
 
-        public delegate void SuccessfulTwins();
-        public static SuccessfulTwins successfulTwins;
+        // public delegate void SuccessfulTwins();
+        // public static SuccessfulTwins successfulTwins;
 
         public delegate void EventLevelLost();
         public static EventLevelLost eventLevelLost;
@@ -87,7 +87,7 @@ namespace Twinster.Core
 
         private void ProcessWinCondition()
         {
-            eventLevelComplete();
+            //eventLevelComplete();
 
             if (winLabel == null)
             {

@@ -49,7 +49,10 @@ namespace Twinster.Core
             {
                 FindObjectOfType<StarsBank>().DepositStars(starsGainFromTimer);
             }
-            FindObjectOfType<MusicManager>().UnPauseMusic();
+            if (FindObjectOfType<MusicManager>())
+            {
+                FindObjectOfType<MusicManager>().UnPauseMusic();
+            }
             FindObjectOfType<LevelLoader>().LoadNextLevel();
         }
 

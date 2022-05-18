@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Twinster.Core;
 using UnityEngine;
 using Twinster.Saving;
+using Twinster.Scenes;
 
 namespace Twinster.Sprites
 {
@@ -19,8 +20,9 @@ namespace Twinster.Sprites
         [SerializeField] ThemeNames defaultTheme = ThemeNames.Generic;
         [SerializeField] ThemeSets defaultSetName = ThemeSets.All;
 
+        string themeNameString;
+
         private void Start() {
-            Debug.Log(defaultTheme);
             activeSet.Clear();
             PrepareSpriteSetList();
         }
@@ -33,8 +35,24 @@ namespace Twinster.Sprites
             return sprite;
         }
 
+        public void SetTheme(ThemeNames theme)
+        {
+            activeTheme = theme;
+            
+            //CaptureState();
+        }
+
+        public void SaveTheme(string themeNameString)
+        {
+            this.themeNameString = themeNameString;
+            activeTheme = (ThemeNames)System.Enum.Parse( typeof(ThemeNames), themeNameString );
+            CaptureState();
+        }
+
         private void PrepareSpriteSetList()
         {
+            if (FindObjectOfType<LevelSettings>() == null) return;
+
             ThemeSets chosenSet = FindObjectOfType<LevelSettings>().GetThemeSet();
 
             foreach (ThemeSpritesSO theme in themes)
@@ -91,12 +109,20 @@ namespace Twinster.Sprites
 
         public object CaptureState()
         {
-            throw new System.NotImplementedException();
+            //return activeTheme;
+            return themeNameString;
         }
 
         public void RestoreState(object state)
         {
-            throw new System.NotImplementedException();
+            Debug.Log("RestoreState is called");
+            //Debug.Log($"Active theme is: {(string)activeTheme}");
+            //Debug.Log($"Active theme is: {(ThemeNames)state}");
+            //activeTheme = (ThemeNames)state;
+            if (state != null)
+            {
+                activeTheme = (ThemeNames)System.Enum.Parse( typeof(ThemeNames), (string)state);
+            }
         }
     }
 }

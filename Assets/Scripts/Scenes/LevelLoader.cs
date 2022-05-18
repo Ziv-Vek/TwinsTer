@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Twinster.Saving;
 
 namespace Twinster.Scenes
 {
@@ -14,6 +15,8 @@ namespace Twinster.Scenes
 
         public void StartGame()
         {
+            FindObjectOfType<SavingWrapper>().Load();
+
             if (PlayerPrefs.GetInt(PLAYER_LEVEL) < firstLevelIndex || !PlayerPrefs.HasKey(PLAYER_LEVEL))
             {
                 PlayerPrefs.SetInt(PLAYER_LEVEL, firstLevelIndex);
@@ -47,6 +50,7 @@ namespace Twinster.Scenes
 
         public void LoadMainMenu()
         {
+            FindObjectOfType<SavingWrapper>().Save();
             SceneManager.LoadScene(mainMenuIndex);
         }
 
