@@ -4,14 +4,13 @@ using Twinster.Saving;
 
 namespace Twinster.Scenes
 {
-    public class LevelLoader : MonoBehaviour
+    public class LevelLoader : MonoBehaviour, ISaveable
     {
         [SerializeField] int mainMenuIndex = 1;
-        [SerializeField] int firstLevelIndex = 2;
+        [SerializeField] int firstLevelIndex = 3;
         [SerializeField] int themesStoreIndex = 2;
-        const string PLAYER_LEVEL = "playerLevel";
-
-        int savedLevel = 0;
+        
+        [SerializeField] int savedLevel = 0;    // serialized for debugging
 
         private void Start() {
             FindObjectOfType<SavingWrapper>().Load();
@@ -19,29 +18,33 @@ namespace Twinster.Scenes
 
         public void StartGame()
         {
-            if (PlayerPrefs.GetInt(PLAYER_LEVEL) < firstLevelIndex || !PlayerPrefs.HasKey(PLAYER_LEVEL))
+            if (savedLevel < firstLevelIndex)
             {
-                PlayerPrefs.SetInt(PLAYER_LEVEL, firstLevelIndex);
+                savedLevel = firstLevelIndex;
             }
-            
-            int levelIndexToLoad = PlayerPrefs.GetInt(PLAYER_LEVEL);
-            SceneManager.LoadScene(levelIndexToLoad);
-        }
+
+            SceneManager.LoadScene(savedLevel);
+    }
 
         public void LoadNextLevel()
         {
+            FindObjectOfType<SavingWrapper>().Save();
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(++currentSceneIndex);
         }
 
         public void SaveLevel()
         {
-            int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
-            PlayerPrefs.SetInt(PLAYER_LEVEL, nextLevelIndex);
-            if (nextLevelIndex + 1 > SceneManager.sceneCountInBuildSettings)
+            if (SceneManager.GetActiveScene().buildIndex + 1 > SceneManager.sceneCountInBuildSettings)
             {
-                PlayerPrefs.DeleteKey(PLAYER_LEVEL);
+                savedLevel = firstLevelIndex;
             }
+            else
+            {
+                savedLevel = SceneManager.GetActiveScene().buildIndex + 1;
+            }
+
+            CaptureState();
         }
 
         public void RestartLevel()
@@ -64,6 +67,21 @@ namespace Twinster.Scenes
         public void LoadThemesStore()
         {
             SceneManager.LoadScene(themesStoreIndex);
+        }
+
+        public object CaptureState()
+        {
+            return savedLevel;
+        }
+
+        public void RestoreState(object state)
+        {
+            savedLevel = (int)state;
+        }
+
+        public int GetFirstLevelIndex()
+        {
+            return firstLevelIndex;
         }
     }
 }

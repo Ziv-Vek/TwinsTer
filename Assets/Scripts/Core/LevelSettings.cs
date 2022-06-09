@@ -23,6 +23,11 @@ namespace Twinster.Core
         [Tooltip("The number of twins player needs to find in order to win the level")]
         [SerializeField] int requiredNumOfTwins = 0;
         public int RequiredNumOfTwins { get { return requiredNumOfTwins; } }
+        [SerializeField] int numberOfTripletsPopulated = 0;
+        public int NumberOfTripletsPopulated { get { return numberOfTripletsPopulated; } }
+        [Tooltip("The number of twins player needs to find in order to win the level")]
+        [SerializeField] int requiredNumOfTriplets = 0;
+        public int RequiredNumOfTriplets { get { return requiredNumOfTriplets; } }
         [Tooltip("Time for timer, in seconds")]
         [SerializeField] float timerSet = 90;
         public float TimerSet { get { return timerSet; } }
@@ -35,6 +40,7 @@ namespace Twinster.Core
         [SerializeField] GameObject loseLabel;
 
         int requiredTwinsCoundown = 1;
+        int requiredTripletsCoundown = 1;
 
         public delegate void EventLevelComplete();
         public static EventLevelComplete eventLevelComplete;
@@ -52,14 +58,17 @@ namespace Twinster.Core
             // }
 
             requiredTwinsCoundown = requiredNumOfTwins;
+            requiredTripletsCoundown = requiredNumOfTriplets;
         }
 
         private void OnEnable() {
             SlotsSelectionHandler.successfulTwins += ReduceRequiredTwins;
+            SlotsSelectionHandler.successfulTriplets += ReduceRequiredTriplets;
         }
 
         private void OnDisable() {
             SlotsSelectionHandler.successfulTwins -= ReduceRequiredTwins;
+            SlotsSelectionHandler.successfulTriplets -= ReduceRequiredTriplets;
         }
 
         public void ProcessLoseCondition()
@@ -74,15 +83,26 @@ namespace Twinster.Core
         public void ReduceRequiredTwins()
         {
             requiredTwinsCoundown--;
-            if (requiredTwinsCoundown <= 0)
-            {
-                ProcessWinCondition();
-            }
+            CheckWinCondition();
+        }
+
+        public void ReduceRequiredTriplets()
+        {
+            requiredTripletsCoundown--;
+            CheckWinCondition();
         }
 
         public ThemeSets GetThemeSet()
         {
             return themeSet;
+        }
+
+        void CheckWinCondition()
+        {
+            if (requiredTripletsCoundown <= 0 && requiredTwinsCoundown <= 0)
+            {
+                ProcessWinCondition();
+            }
         }
 
         private void ProcessWinCondition()
@@ -97,7 +117,8 @@ namespace Twinster.Core
 
             FindObjectOfType<SlotsSelectionHandler>().DisableSelection(true);
             FindObjectOfType<Timer>().DisableCoundown(true);
-            FindObjectOfType<StarsBank>().DepositStars(requiredNumOfTwins);
+            int starsGained = Mathf.CeilToInt(requiredNumOfTriplets * 1.5f) + requiredNumOfTwins;
+            FindObjectOfType<StarsBank>().DepositStars(starsGained);
             winLabel.SetActive(true);
         }
     }

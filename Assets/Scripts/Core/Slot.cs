@@ -12,9 +12,22 @@ namespace Twinster.Core
             set { twinEnum = value; } 
             get { return twinEnum; }
         }
+        [SerializeField] TripletsEnum tripletEnum;
+        public TripletsEnum TripletEnum {
+            set { tripletEnum = value; } 
+            get { return tripletEnum; }
+        }
         
         [SerializeField] ParticleSystem blip;
         [SerializeField] ParticleSystem ball = null;
+
+        RectTransform fireballTarget = null;
+
+        void Start()
+        {
+            fireballTarget = GameObject.FindWithTag("UILeftHoleBackground").GetComponent<RectTransform>();
+        }
+
 
         public void DisappearSlot()
         {
@@ -35,7 +48,7 @@ namespace Twinster.Core
                 Debug.Log("Ball particle not set in Slot");
                 return; }
 
-            var targetPos = Camera.main.ScreenToWorldPoint(FindObjectOfType<TwinsCounterDisplay>().GetComponent<RectTransform>().transform.position) + Vector3.down;
+            var targetPos = Camera.main.ScreenToWorldPoint(fireballTarget.transform.position) + Vector3.down;
             
             Vector3 objectPos = transform.position;
             ball.gameObject.SetActive(true);
@@ -52,7 +65,6 @@ namespace Twinster.Core
             LeanTween.move(ball.gameObject, targetPos, 0.5f).setDelay(0.2f).setOnComplete( () => {
                 LeanTween.cancel(ball.gameObject);
                 Destroy(ball.gameObject);
-                FindObjectOfType<TwinsCounterDisplay>().TweenScale();
             });
         }
     }

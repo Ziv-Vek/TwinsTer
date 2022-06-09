@@ -10,18 +10,28 @@ namespace Twinster.Selection
 {
     public class SlotsSelectionHandler : MonoBehaviour
     {
-        [SerializeField] GameObject slotBackground = null;
+        [SerializeField] GameObject previousSlotBackground = null;
+        [SerializeField] GameObject previousPreviousSlotBackground = null;
         
-        Slot previousSlot = null;     // serialized for debugging
+        [SerializeField] Slot currentSlot = null;
+        [SerializeField] Slot previousSlot = null;
+        [SerializeField] Slot previousPreviousSlot = null;
         Camera mainCamera;
         bool isSelectionDisabled = false;
 
         public delegate void SuccessfulTwins();
         public static SuccessfulTwins successfulTwins;
+        
+        public delegate void SuccessfulTriplets();
+        public static SuccessfulTriplets successfulTriplets;
 
         private void Awake() {
             mainCamera = Camera.main;
         }
+
+        // private void Start() {
+        //     selectionsArray = {0, 0, 0};
+        // }
 
         void Update()
         {
@@ -59,64 +69,128 @@ namespace Twinster.Selection
 
         private void ProcessSelection(Slot selectedSlot)
         {
-            if (previousSlot == null)
+            if (currentSlot == null)
             {
-                previousSlot = selectedSlot;
-                
-                // Selection VFX
-                PaintSlotBackground(previousSlot);
-                selectedSlot = null;
-
+                currentSlot = selectedSlot;
+                PaintSlotBackground(currentSlot, previousSlotBackground);
                 return;
             }
 
-            if (selectedSlot.gameObject == previousSlot.gameObject)
+            if (currentSlot.gameObject == selectedSlot.gameObject)
             {
-                Debug.Log("You selected the same slot");
                 return;
             }
 
-            if (previousSlot.TwinEnum == TwinsEnum.NoTwin || selectedSlot.TwinEnum == TwinsEnum.NoTwin)
-            {
-                // Remove selection VFX from previous slot
-                // Add selection VFX to selected slot
-                PaintSlotBackground(selectedSlot);
-                previousSlot = selectedSlot;
+            previousPreviousSlot = previousSlot;
+            previousSlot = currentSlot;
+            currentSlot = selectedSlot;
 
+            if (currentSlot.TwinEnum != TwinsEnum.NoTwin)
+            {
+                CheckForTwins();
                 return;
             }
-
-            if (previousSlot.TwinEnum != selectedSlot.TwinEnum)
+            else if (currentSlot.TripletEnum != TripletsEnum.NoTriplet)
             {
-                // Remove selection VFX from previous slot
-                // Add selection VFX to selected slot
-                PaintSlotBackground(selectedSlot);
-                previousSlot = selectedSlot;
-
+                CheckForTriplets();
                 return;
             }
-
-            ProcessSuccessfulTwin(selectedSlot);
+            else if (currentSlot.TwinEnum == TwinsEnum.NoTwin && currentSlot.TripletEnum == TripletsEnum.NoTriplet)
+            {
+                ResetSlots();
+                return;
+            }
         }
 
-        private void ProcessSuccessfulTwin(Slot selectedSlot)
+        private void ResetSlots()
+        {
+            RemoveSlotBackground(previousPreviousSlotBackground);
+            previousSlot = null;
+            previousPreviousSlot = null;
+            PaintSlotBackground(currentSlot, previousSlotBackground);
+        }
+
+        private void CheckForTwins()
+        {
+            if (previousSlot == null)
+            {
+                PaintSlotBackground(currentSlot, previousSlotBackground);
+                return;
+            }
+
+            if (currentSlot.TwinEnum == previousSlot.TwinEnum)
+            {
+                ProcessSuccessfulTwin();
+                return;
+            }
+
+            ResetSlots();
+        }
+
+        private void CheckForTriplets()
+        {
+            if (previousSlot == null)
+            {
+                PaintSlotBackground(currentSlot, previousSlotBackground);
+                return;
+            }
+
+            if (previousPreviousSlot == null)
+            {
+                if (currentSlot.TripletEnum == previousSlot.TripletEnum)
+                {
+                    PaintSlotBackground(previousSlot, previousPreviousSlotBackground);
+                    PaintSlotBackground(currentSlot, previousSlotBackground);
+                    return;
+                }
+                else
+                {
+                    ResetSlots();
+                    return;
+                }
+            }
+
+            if (currentSlot.TripletEnum == previousSlot.TripletEnum && currentSlot.TripletEnum == previousPreviousSlot.TripletEnum)
+            {
+                ProcessSuccessfulTriplet();
+                return;
+            }
+            
+            ResetSlots();
+        }
+
+        private void ProcessSuccessfulTwin()
         {
             successfulTwins();
             previousSlot.DisappearSlot();
-            selectedSlot.DisappearSlot();
-            RemoveSlotBackground();
+            currentSlot.DisappearSlot();
+            RemoveSlotBackground(previousSlotBackground);
+            RemoveSlotBackground(previousPreviousSlotBackground);
+            currentSlot = null;
             previousSlot = null;
-            
+            previousPreviousSlot = null;
         }
 
-        private void PaintSlotBackground(Slot slot)
+        private void ProcessSuccessfulTriplet()
+        {
+            successfulTriplets();
+            previousPreviousSlot.DisappearSlot();
+            previousSlot.DisappearSlot();
+            currentSlot.DisappearSlot();
+            RemoveSlotBackground(previousSlotBackground);
+            RemoveSlotBackground(previousPreviousSlotBackground);
+            currentSlot = null;
+            previousSlot = null;
+            previousPreviousSlot = null;
+        }
+
+        private void PaintSlotBackground(Slot slot, GameObject slotBackground)
         {
             slotBackground.transform.SetPositionAndRotation(slot.transform.position, slot.transform.rotation);
             slotBackground.GetComponent<SpriteRenderer>().sprite = slot.GetComponent<SpriteRenderer>().sprite;
         }
-
         
-        private void RemoveSlotBackground()
+        private void RemoveSlotBackground(GameObject slotBackground)
         {
             slotBackground.GetComponent<SpriteRenderer>().sprite = null;
         }

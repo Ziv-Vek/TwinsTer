@@ -50,10 +50,12 @@ namespace Twinster.Audio
 
         private void OnEnable() {
             SlotsSelectionHandler.successfulTwins += PlayTwinSFX;
+            SlotsSelectionHandler.successfulTriplets += PlayTwinSFX;
         }
 
         private void OnDisable() {
             SlotsSelectionHandler.successfulTwins -= PlayTwinSFX;
+            SlotsSelectionHandler.successfulTriplets -= PlayTwinSFX;
         }
 
         public bool GetIsSFXEnabled()

@@ -14,6 +14,7 @@ namespace Twinster.Core
     {
         int numberOfSingles = 0;
         int numberOfTwins = 0;
+        int numberOfTriplets = 0;
         [SerializeField] int fixedZPos = 4;
         [SerializeField] Image themeBackgroundImage = null;
         [SerializeField] GameObject slotsParent;        
@@ -22,6 +23,7 @@ namespace Twinster.Core
         GridManager gridManager;
         SpriteBank spriteBank;
         TwinsEnum twinsEnum;
+        TripletsEnum tripletsEnum;
         List<GameObject> slotsToPopulate = new List<GameObject>();
 
         private void Awake() {
@@ -29,7 +31,9 @@ namespace Twinster.Core
             spriteBank = FindObjectOfType<SpriteBank>();
             numberOfSingles = FindObjectOfType<LevelSettings>().NumberOfSingles;
             numberOfTwins = FindObjectOfType<LevelSettings>().NumberOfTwinsPopulated;
+            numberOfTriplets = FindObjectOfType<LevelSettings>().NumberOfTripletsPopulated;
             twinsEnum = 0;
+            tripletsEnum = 0;
         }
 
         private void Start()
@@ -42,11 +46,16 @@ namespace Twinster.Core
             {
                 numberOfTwins = FindObjectOfType<LevelSettings>().NumberOfTwinsPopulated;
             }
+            if (numberOfTriplets == 0)
+            {
+                numberOfTriplets = FindObjectOfType<LevelSettings>().NumberOfTripletsPopulated;
+            }
 
             //CheckForErrorsInLevelConfigurations();
             PopulateBackground();
             PopulateSingleSlots();
             PopulateTwins();
+            PopulateTriplets();
 
             // randomly pick a sprite from the bank and place instaniate it
             // int randomNum = Random.Range(0, spritesBank.Count);
@@ -98,6 +107,29 @@ namespace Twinster.Core
             }
         }
 
+        private void PopulateTriplets()
+        {
+            for (int i = 0; i < numberOfTriplets; i++)
+            {
+                // Instantiate the slot gameobject, without image
+                GameObject slot1 = InstantiateSlot(i);
+                GameObject slot2 = InstantiateSlot(i);
+                GameObject slot3 = InstantiateSlot(i);
+                
+                // Sets the enum to mark twins
+                tripletsEnum++;
+                AttachTripletsMarkEnum(slot1);
+                AttachTripletsMarkEnum(slot2);
+                AttachTripletsMarkEnum(slot3);
+
+                // Attach a random sprite to the slot (fot the twin slots)
+                Sprite sprite = spriteBank.GetSprite();
+                slot1.GetComponent<SpriteRenderer>().sprite = sprite;
+                slot2.GetComponent<SpriteRenderer>().sprite = sprite;
+                slot3.GetComponent<SpriteRenderer>().sprite = sprite;
+            }
+        }
+
         private GameObject InstantiateSlot(int zPos)
         {
             Vector3 coordinates = gridManager.GetPopulationCoordinate(zPos);
@@ -115,6 +147,11 @@ namespace Twinster.Core
         private void AttachTwinMarkEnum (GameObject slot)
         {
             slot.GetComponent<Slot>().TwinEnum = this.twinsEnum;
+        }
+
+        private void AttachTripletsMarkEnum (GameObject slot)
+        {
+            slot.GetComponent<Slot>().TripletEnum = this.tripletsEnum;
         }
     }
 }

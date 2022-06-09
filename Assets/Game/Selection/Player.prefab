@@ -43,4 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ba243ca84ad114488413dc5cc6b6dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotSelectedBackground: {fileID: 5218370179866677738, guid: 33afcc1ec233dd743b45f11ae5afb28c, type: 3}
+  previousSlotBackground: {fileID: 5218370179866677738, guid: 33afcc1ec233dd743b45f11ae5afb28c, type: 3}
+  previousPreviousSlotBackground: {fileID: 5218370179866677738, guid: 33afcc1ec233dd743b45f11ae5afb28c, type: 3}
+  currentSlot: {fileID: 0}
+  previousSlot: {fileID: 0}
+  previousPreviousSlot: {fileID: 0}

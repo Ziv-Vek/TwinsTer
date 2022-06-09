@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 71693437177851954}
   - component: {fileID: 71693437177851916}
   - component: {fileID: 71693437177851917}
-  - component: {fileID: 2878557907370624441}
   m_Layer: 5
   m_Name: Twins Counter
   m_TagString: Untagged
@@ -135,16 +134,3 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2878557907370624441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 71693437177851955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36dee32c51a2a0046b16d65d7f44dd0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  counterDisplay: {fileID: 71693437177851917}
