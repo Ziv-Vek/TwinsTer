@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4031847a038e85c45a7a9d1432ed0e97, type: 3}
   m_Name: TripletsTextBlock 1
   m_EditorClassIdentifier: 
-  text: 'Select the '
+  text: Tap the three identical objects marked inside the squares.

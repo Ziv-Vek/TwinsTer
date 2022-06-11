@@ -30,18 +30,19 @@ namespace Twinster.Tutorial
 
         GameObject mask1 = null;
         GameObject mask2 = null;
+        GameObject mask3 = null;
 
         int stepNum = -1;
 
 
         private void OnEnable()
         {
-            SlotsSelectionHandler.successfulTwins += NextTutorialStep;
+            SlotsSelectionHandler.successfulTriplets += NextTutorialStep;
         }
 
         private void OnDisable()
         {
-            SlotsSelectionHandler.successfulTwins -= NextTutorialStep;
+            SlotsSelectionHandler.successfulTriplets -= NextTutorialStep;
         }
 
 
@@ -79,40 +80,39 @@ namespace Twinster.Tutorial
                     textCanvas.SetActive(true);
                     uiTimerFade.SetActive(true);
                     uiFade.SetActive(true);
+                    FindObjectOfType<SlotsSelectionHandler>().DisableSelection(true);
+                    TextBackgroundTween();
+                    Invoke(nameof(EnableTapping), delayToTapContinueText);
+                    break;
+                case 1:
+                    FindObjectOfType<SlotsSelectionHandler>().DisableSelection(false);
+                    continueText.SetActive(false);
+                    DisplayTextBlock(1);
                     DisableBallParticles();
                     Invoke(nameof(PopulateFirstMask), delayTutorialText);
                     break;
-                case 1:
-                    DisplayTextBlock(1);
+                case 2:
+                    DisplayTextBlock(2);
+                    FindObjectOfType<SlotsSelectionHandler>().DisableSelection(true);
+                    uiCirclesMask.SetActive(true);
                     mask1.GetComponent<SpriteMask>().enabled = false;
                     mask2.GetComponent<SpriteMask>().enabled = false;
-                    uiCirclesMask.SetActive(true);
-                    FindObjectOfType<SlotsSelectionHandler>().DisableSelection(true);
-                    Invoke(nameof(EnableTapping), delayToTapContinueText);
-                    break;
-                case 2:
-                    continueText.SetActive(false);
-                    DisplayTextBlock(2);
-                    uiCirclesMask.SetActive(false);
-                    uiTimerMask.SetActive(true);
+                    mask3.GetComponent<SpriteMask>().enabled = false;
                     Invoke(nameof(EnableTapping), delayToTapContinueText);
                     break;
                 case 3:
                     DisplayTextBlock(3);
-                    continueText.SetActive(false);
-                    uiTimerMask.SetActive(false);
-                    PopulateSecondMask();
-                    FindObjectOfType<LevelSettings>().enabled = false;
-                    FindObjectOfType<SlotsSelectionHandler>().DisableSelection(false);
+                    Invoke(nameof(EnableTapping), delayToTapContinueText);
+                    //uiTimerMask.SetActive(false);
                     break;
                 case 4:
-                    DisplayTextBlock(4);
+                    tutorialBackground.SetActive(false);
+                    textCanvas.SetActive(false);
+                    uiTimerFade.SetActive(false);
+                    uiFade.SetActive(false);
+                    FindObjectOfType<SlotsSelectionHandler>().DisableSelection(false);
                     DestroyMasks();
-                    Invoke(nameof(EnableTapping), delayToTapContinueText);
-                    break;
-                case 5:
-                    FindObjectOfType<LevelSettings>(includeInactive: true).enabled = true;
-                    FindObjectOfType<LevelSettings>().ReduceRequiredTwins();
+                    EnableSlotsSelection();
                     break;
             }
         }
@@ -136,7 +136,7 @@ namespace Twinster.Tutorial
             Slot[] slots = FindObjectsOfType<Slot>();
             foreach (Slot slot in slots)
             {
-                if (slot.TwinEnum == TwinsEnum.TwinA)
+                if (slot.TripletEnum == TripletsEnum.TripletA)
                 {
                     GameObject mask = Instantiate(slotMaskPrefab, slot.transform.position, Quaternion.identity);
                     mask.transform.SetParent(gameObject.transform);
@@ -145,9 +145,13 @@ namespace Twinster.Tutorial
                     {
                         mask1 = mask;
                     }
-                    else
+                    else if (mask2 == null)
                     {
                         mask2 = mask;
+                    }
+                    else
+                    {
+                        mask3 = mask;
                     }
                 }
                 else
@@ -155,7 +159,6 @@ namespace Twinster.Tutorial
                     slot.GetComponent<Collider>().enabled = false;
                 }
             }
-            TextBackgroundTween();
         }
 
         private void DisableBallParticles()
@@ -164,29 +167,6 @@ namespace Twinster.Tutorial
             foreach (Slot slot in slots)
             {
                 slot.SetBallParticle(null);
-            }
-        }
-
-        private void PopulateSecondMask()
-        {
-            Slot[] slots = FindObjectsOfType<Slot>();
-            foreach (Slot slot in slots)
-            {
-                if (slot.TwinEnum == TwinsEnum.TwinB)
-                {
-                    slot.GetComponent<Collider>().enabled = true;
-                    GameObject mask = Instantiate(slotMaskPrefab, slot.transform.position, Quaternion.identity);
-                    mask.transform.SetParent(gameObject.transform);
-
-                    if (mask1 == null)
-                    {
-                        mask1 = mask;
-                    }
-                    else
-                    {
-                        mask2 = mask;
-                    }
-                }
             }
         }
 
@@ -226,8 +206,17 @@ namespace Twinster.Tutorial
             LeanTween.cancel(continueText);
             NextTutorialStep();
         }
-
-
+        private void EnableSlotsSelection()
+        {
+            Slot[] slots = FindObjectsOfType<Slot>();
+            foreach (Slot slot in slots)
+            {
+                if (slot.TripletEnum != TripletsEnum.TripletA)
+                {
+                    slot.GetComponent<Collider>().enabled = true;
+                }
+            }
+        }
     }
 }
 

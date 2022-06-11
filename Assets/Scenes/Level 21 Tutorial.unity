@@ -1170,7 +1170,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4265735856510281803}
-  - component: {fileID: 4265735856510281812}
   - component: {fileID: 4265735856510281804}
   m_Layer: 0
   m_Name: Level Related Objects
@@ -1223,38 +1222,11 @@ MonoBehaviour:
   uiTimerFade: {fileID: 4265735856302730989}
   uiCirclesMask: {fileID: 4265735856306357425}
   uiTimerMask: {fileID: 4265735857542943457}
-  textBlocks: []
-  textArea: {fileID: 0}
---- !u!114 &4265735856510281812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4265735856510281802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12af395558d35aa4c91efa055ba0bf01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayTutorialBackground: 1
-  delayTutorialText: 0.2
-  delayToTapContinueText: 0.5
-  slotMaskPrefab: {fileID: 8915682228397194790, guid: cdbbbc0531499de468e8cf3a287a8476, type: 3}
-  tutorialBackground: {fileID: 4265735856591303055}
-  textCanvas: {fileID: 4265735857066720351}
-  textBackground: {fileID: 4265735855977778329}
-  continueText: {fileID: 4265735857444543377}
-  uiFade: {fileID: 4265735856217867671}
-  uiTimerFade: {fileID: 4265735856302730989}
-  uiCirclesMask: {fileID: 4265735856306357425}
-  uiTimerMask: {fileID: 4265735857542943457}
   textBlocks:
-  - {fileID: 11400000, guid: 9eb7e5f4f714fda4ba93e0da5077526b, type: 2}
-  - {fileID: 11400000, guid: c9e290ad12db5234cb7f424e369e5e2b, type: 2}
-  - {fileID: 11400000, guid: 8b6be97e1e177e849b59a3edbc8ec669, type: 2}
-  - {fileID: 11400000, guid: c07117471b24bec4aa4365b669dc11e9, type: 2}
-  - {fileID: 11400000, guid: 386980afc40dd57488b2f10adcc79b02, type: 2}
+  - {fileID: 11400000, guid: 70d3ffe57572b7443a0efbef73196af3, type: 2}
+  - {fileID: 11400000, guid: f909a295712d7e843be8e654403692b2, type: 2}
+  - {fileID: 11400000, guid: b099a6f620f765649bcded88a3b5b80c, type: 2}
+  - {fileID: 11400000, guid: 1b6bcc4d69440c34395c6e2cf64cf63e, type: 2}
   textArea: {fileID: 4265735856842766459}
 --- !u!212 &4265735856591303048
 SpriteRenderer:
@@ -2020,6 +1992,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7133667911756862016, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
+      propertyPath: leftScreenBorder
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7133667911756862016, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
+      propertyPath: rightScreenBorder
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7133667911756862016, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
+      propertyPath: bottomScreenBorder
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7133667912690617777, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: parentSlot
       value: 
@@ -2118,7 +2102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8576473292143328763, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: numberOfSingles
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8576473292143328763, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: requiredNumOfTwins
