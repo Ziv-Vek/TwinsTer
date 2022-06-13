@@ -7,7 +7,7 @@ namespace Twinster.Scenes
 {
     public class SavingWrapper : MonoBehaviour
     {
-        const string defaultSaveFile = "save";
+        const string defaultSaveFile = "twinster";
 
         public void Save()
         {

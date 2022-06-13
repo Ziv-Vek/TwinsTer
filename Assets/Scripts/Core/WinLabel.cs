@@ -53,7 +53,8 @@ namespace Twinster.Core
             {
                 FindObjectOfType<MusicManager>().UnPauseMusic();
             }
-            FindObjectOfType<LevelLoader>().LoadNextLevel();
+            
+            FindObjectOfType<LevelLoader>().CheckAdDisplay();
         }
 
         private void UpdateStarsDisplay()

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Twinster.Saving;
+using Twinster.Monetization;
 
 namespace Twinster.Scenes
 {
@@ -9,11 +10,14 @@ namespace Twinster.Scenes
         [SerializeField] int mainMenuIndex = 1;
         [SerializeField] int firstLevelIndex = 3;
         [SerializeField] int themesStoreIndex = 2;
-        
         [SerializeField] int savedLevel = 0;    // serialized for debugging
+        [SerializeField] int levelIntervalsToShowAds = 3;
 
         private void Start() {
-            FindObjectOfType<SavingWrapper>().Load();
+            if (FindObjectOfType<SavingWrapper>() != null)
+            {
+                FindObjectOfType<SavingWrapper>().Load();
+            }
         }
 
         public void StartGame()
@@ -28,9 +32,23 @@ namespace Twinster.Scenes
 
         public void LoadNextLevel()
         {
-            FindObjectOfType<SavingWrapper>().Save();
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(++currentSceneIndex);
+        }
+
+        public void CheckAdDisplay()
+        {
+            FindObjectOfType<SavingWrapper>().Save();
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            int currentLevelNum = currentSceneIndex - firstLevelIndex + 1;
+            if ((currentLevelNum % 3) == 0)
+            {
+                FindObjectOfType<AdManager>().ShowInterstitialAd();
+            }
+            else
+            {
+                LoadNextLevel();
+            }
         }
 
         public void SaveLevel()

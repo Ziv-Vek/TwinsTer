@@ -30,7 +30,7 @@ namespace Twinster.Menus
             gameObject.SetActive(false);
         }
 
-        public void ShowPrivacyMenu()
+        /*public void ShowPrivacyMenu()
         {
             if (privacyMenuCanvas == null)
             {
@@ -39,6 +39,11 @@ namespace Twinster.Menus
             }
             privacyMenuCanvas.SetActive(true);
             gameObject.SetActive(false);
+        }*/
+
+        public void GoToPPURL()
+        {
+            Application.OpenURL("http://www.wendy-pan.com/privacy-policy");
         }
 
         public void ToggleSFX()

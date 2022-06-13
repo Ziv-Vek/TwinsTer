@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/__AcceptingTermsScreen.unity
+    guid: b9913477775a24540bc01d10349f68ca
+  - enabled: 1
     path: Assets/Scenes/__SplashScreen.unity
     guid: d72764fe2ad43a84da807a102b4f584f
   - enabled: 1
@@ -127,7 +130,7 @@ EditorBuildSettings:
     guid: 236d10a0c4dee8a4884b41670bcae941
   - enabled: 1
     path: Assets/Scenes/Level 38.unity
-    guid: 19ab3daccd5ea6c4fa7346225a099f46
+    guid: 46044cccf0ee8514f9fe310c31cec3e5
   - enabled: 1
     path: Assets/Scenes/Level 39.unity
     guid: 499bb5f2d19a6a24f8a3bff3080e7974
