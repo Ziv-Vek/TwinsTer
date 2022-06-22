@@ -31,6 +31,7 @@ namespace Twinster.Core
         [Tooltip("Time for timer, in seconds")]
         [SerializeField] float timerSet = 90;
         public float TimerSet { get { return timerSet; } }
+        [SerializeField] bool isQuickLevel = false;
 
         
         [Space(5)]
@@ -73,6 +74,14 @@ namespace Twinster.Core
 
         public void ProcessLoseCondition()
         {
+            if (isQuickLevel)
+            {
+                Debug.Log("isquickleveling");
+                ProcessWinCondition();
+                return;
+            }
+            Debug.Log("not quick leveling");
+
             eventLevelLost();
             
             FindObjectOfType<SlotsSelectionHandler>().DisableSelection(true);
@@ -117,7 +126,20 @@ namespace Twinster.Core
 
             FindObjectOfType<SlotsSelectionHandler>().DisableSelection(true);
             FindObjectOfType<Timer>().DisableCoundown(true);
-            int starsGained = Mathf.CeilToInt(requiredNumOfTriplets * 1.5f) + requiredNumOfTwins;
+
+            int starsGained = 0;
+
+            if (isQuickLevel)
+            {
+                starsGained = Mathf.CeilToInt((requiredNumOfTriplets - requiredTripletsCoundown) * 1.5f) + (requiredNumOfTwins - requiredTwinsCoundown);
+            }
+            else
+            {
+                starsGained = Mathf.CeilToInt(requiredNumOfTriplets * 1.5f) + requiredNumOfTwins;
+            }
+
+            
+            
             FindObjectOfType<StarsBank>().DepositStars(starsGained);
             winLabel.SetActive(true);
         }

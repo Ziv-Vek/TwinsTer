@@ -17,9 +17,9 @@ namespace Twinster.Core
         int numberOfTriplets = 0;
         [SerializeField] int fixedZPos = 4;
         [SerializeField] Image themeBackgroundImage = null;
-        [SerializeField] GameObject slotsParent;        
+        [SerializeField] GameObject slotsParent;
+        [SerializeField] GameObject slotPrefab;
 
-        public GameObject slotPrefab;
         GridManager gridManager;
         SpriteBank spriteBank;
         TwinsEnum twinsEnum;
@@ -51,11 +51,13 @@ namespace Twinster.Core
                 numberOfTriplets = FindObjectOfType<LevelSettings>().NumberOfTripletsPopulated;
             }
 
+
             //CheckForErrorsInLevelConfigurations();
             PopulateBackground();
             PopulateSingleSlots();
             PopulateTwins();
             PopulateTriplets();
+            
 
             // randomly pick a sprite from the bank and place instaniate it
             // int randomNum = Random.Range(0, spritesBank.Count);
@@ -127,6 +129,17 @@ namespace Twinster.Core
                 slot1.GetComponent<SpriteRenderer>().sprite = sprite;
                 slot2.GetComponent<SpriteRenderer>().sprite = sprite;
                 slot3.GetComponent<SpriteRenderer>().sprite = sprite;
+            }
+
+            //ValidateSlotsSelectable();
+        }
+
+        private void ValidateSlotsSelectable()
+        {
+            Slot[] allSlots = FindObjectsOfType<Slot>();
+            foreach(Slot slot in allSlots)
+            {
+                slot.GetComponent<CapsuleCollider2D>().enabled = true;
             }
         }
 

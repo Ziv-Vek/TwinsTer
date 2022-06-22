@@ -1077,6 +1077,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 972295224}
     - target: {fileID: 7133667912690617777, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
+      propertyPath: slotPrefab
+      value: 
+      objectReference: {fileID: 5442457809937348453, guid: d865baa4bba821a4a8f811fe990c8800, type: 3}
+    - target: {fileID: 7133667912690617777, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: slotsParent
       value: 
       objectReference: {fileID: 972295224}

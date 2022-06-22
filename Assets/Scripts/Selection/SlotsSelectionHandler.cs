@@ -52,7 +52,7 @@ namespace Twinster.Selection
             Vector3 worldPosition = mainCamera.ScreenToWorldPoint(touchPosition);
 
             RaycastHit hit;
-            bool hasHit = Physics.Raycast(worldPosition, mainCamera.transform.forward, out hit, 40);
+            bool hasHit = Physics.Raycast(worldPosition, mainCamera.transform.forward, out hit, 100);
 
             if (hasHit && hit.collider.CompareTag("Slot"))
             {
@@ -150,10 +150,18 @@ namespace Twinster.Selection
                 }
             }
 
-            if (currentSlot.TripletEnum == previousSlot.TripletEnum && currentSlot.TripletEnum == previousPreviousSlot.TripletEnum)
+            if (currentSlot.TripletEnum == previousSlot.TripletEnum
+                && currentSlot.TripletEnum == previousPreviousSlot.TripletEnum)
             {
-                ProcessSuccessfulTriplet();
-                return;
+                if (currentSlot.gameObject == previousPreviousSlot.gameObject)
+                {
+                    return;
+                }
+                else
+                {
+                    ProcessSuccessfulTriplet();
+                    return;
+                }
             }
             
             ResetSlots();

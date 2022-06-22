@@ -11,7 +11,7 @@ using UnityEngine.InputSystem;
 
 namespace Twinster.Tutorial
 {
-    public class TripletsTutorial : MonoBehaviour
+    public class QuickLevelTutorial : MonoBehaviour
     {
         // Config:
         [SerializeField] float delayTutorialBackground = 5f;
@@ -19,8 +19,7 @@ namespace Twinster.Tutorial
         [SerializeField] float delayToTapContinueText = 1.5f;
 
         // Cached Ref:
-        [SerializeField] GameObject slotMaskPrefab = null;
-        [SerializeField] GameObject tutorialBackground, textCanvas, textBackground, continueText, uiFade, uiTimerFade, uiCirclesMask, uiTimerMask = null;
+        [SerializeField] GameObject tutorialBackground, textCanvas, textBackground, continueText, uiFade, uiTimerFade = null;
         [SerializeField] TextSO[] textBlocks = null;
         [SerializeField] TMP_Text textArea = null;
 
@@ -28,23 +27,7 @@ namespace Twinster.Tutorial
         bool isTiming = true;
         bool isTapToContinueEnabled = false;
 
-        GameObject mask1 = null;
-        GameObject mask2 = null;
-        GameObject mask3 = null;
-
         int stepNum = -1;
-
-
-        private void OnEnable()
-        {
-            SlotsSelectionHandler.successfulTriplets += NextTutorialStep;
-        }
-
-        private void OnDisable()
-        {
-            SlotsSelectionHandler.successfulTriplets -= NextTutorialStep;
-        }
-
 
         private void Update()
         {
@@ -61,7 +44,6 @@ namespace Twinster.Tutorial
             if (timer >= delayTutorialBackground)
             {
                 isTiming = false;
-                Debug.Log("from timing");
                 NextTutorialStep();
             }
         }
@@ -84,91 +66,36 @@ namespace Twinster.Tutorial
                     TextBackgroundTween();
                     Invoke(nameof(EnableTapping), delayToTapContinueText);
                     break;
-                case 1:
+/*                case 1:
                     FindObjectOfType<SlotsSelectionHandler>().DisableSelection(false);
                     continueText.SetActive(false);
                     DisplayTextBlock(1);
-                    DisableBallParticles();
-                    Invoke(nameof(PopulateFirstMask), delayTutorialText);
                     break;
                 case 2:
                     DisplayTextBlock(2);
                     FindObjectOfType<SlotsSelectionHandler>().DisableSelection(true);
-                    uiCirclesMask.SetActive(true);
-                    mask1.GetComponent<SpriteMask>().enabled = false;
-                    mask2.GetComponent<SpriteMask>().enabled = false;
-                    mask3.GetComponent<SpriteMask>().enabled = false;
                     Invoke(nameof(EnableTapping), delayToTapContinueText);
                     break;
                 case 3:
                     DisplayTextBlock(3);
                     Invoke(nameof(EnableTapping), delayToTapContinueText);
                     //uiTimerMask.SetActive(false);
-                    break;
-                case 4:
+                    break;*/
+                case 1:
                     tutorialBackground.SetActive(false);
                     textCanvas.SetActive(false);
                     uiTimerFade.SetActive(false);
                     uiFade.SetActive(false);
                     FindObjectOfType<SlotsSelectionHandler>().DisableSelection(false);
-                    DestroyMasks();
                     EnableSlotsSelection();
                     DisableTimer(false);
                     break;
             }
         }
 
-        private void DestroyMasks()
-        {
-            GameObject[] slotMasks = GameObject.FindGameObjectsWithTag("SlotMask");
-            foreach (GameObject slotMask in slotMasks)
-            {
-                Destroy(slotMask);
-            }
-        }
-
         private void DisableTimer(bool isToDisable)
         {
             FindObjectOfType<Timer>().DisableCoundown(isToDisable);
-        }
-
-        private void PopulateFirstMask()
-        {
-            Slot[] slots = FindObjectsOfType<Slot>();
-            foreach (Slot slot in slots)
-            {
-                if (slot.TripletEnum == TripletsEnum.TripletA)
-                {
-                    GameObject mask = Instantiate(slotMaskPrefab, slot.transform.position, Quaternion.identity);
-                    mask.transform.SetParent(gameObject.transform);
-
-                    if (mask1 == null)
-                    {
-                        mask1 = mask;
-                    }
-                    else if (mask2 == null)
-                    {
-                        mask2 = mask;
-                    }
-                    else
-                    {
-                        mask3 = mask;
-                    }
-                }
-                else
-                {
-                    slot.GetComponent<Collider>().enabled = false;
-                }
-            }
-        }
-
-        private void DisableBallParticles()
-        {
-            Slot[] slots = FindObjectsOfType<Slot>();
-            foreach (Slot slot in slots)
-            {
-                slot.SetBallParticle(null);
-            }
         }
 
         private void TextBackgroundTween()
@@ -220,5 +147,3 @@ namespace Twinster.Tutorial
         }
     }
 }
-
-

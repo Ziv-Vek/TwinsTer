@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e619d13cf642cba4e88b5df9ca0888c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfSingles: 0
-  numberOfTwins: 0
   fixedZPos: 4
+  themeBackgroundImage: {fileID: 0}
+  slotsParent: {fileID: 0}
   slotPrefab: {fileID: 1759066323217749479, guid: 3e21e044abfabc143be31f1027338bd7, type: 3}
