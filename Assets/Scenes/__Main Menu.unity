@@ -656,7 +656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6978696865837842077, guid: 68fcb33451df13d43820d86619479495, type: 3}
       propertyPath: m_text
-      value: 1.0.2(17)
+      value: 1.0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8118569249143654854, guid: 68fcb33451df13d43820d86619479495, type: 3}
       propertyPath: m_IsActive
@@ -807,7 +807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5194544795558956559, guid: 3df3846da21db7e4c8eda269189866d9, type: 3}
       propertyPath: savedLevel
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5194544795558956559, guid: 3df3846da21db7e4c8eda269189866d9, type: 3}
       propertyPath: firstLevelIndex

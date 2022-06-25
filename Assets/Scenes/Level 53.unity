@@ -1146,7 +1146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8576473292143328763, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: timerSet
-      value: 60
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8576473292143328763, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: winLabel
