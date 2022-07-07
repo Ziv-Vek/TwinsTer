@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5779122546058877603}
   - component: {fileID: 5779122546058877602}
+  - component: {fileID: 8084896832175331050}
   - component: {fileID: 6348029851903427949}
   m_Layer: 0
   m_Name: Sprite Bank Manager
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeTheme: 0
+  activeThemeSO: {fileID: 0}
   activeSet: []
   themes:
   - {fileID: 11400000, guid: 801906cf7e9f7c44ea04acee5a046eb5, type: 2}
@@ -52,6 +54,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76db676220576de489c60dad923a251b, type: 2}
   defaultTheme: 0
   defaultSetName: 0
+--- !u!114 &8084896832175331050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5779122546058877532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a655bcda166ec7a439b3a05977090f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6348029851903427949
 MonoBehaviour:
   m_ObjectHideFlags: 0

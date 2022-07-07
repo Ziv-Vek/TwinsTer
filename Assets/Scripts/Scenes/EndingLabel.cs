@@ -12,13 +12,13 @@ namespace Twinster.Scenes
 
         void Start()
         {
-            LeanTween.rotateAround(shiningBackground, Vector3.forward, 360, 30f).setLoopClamp();        
+            LeanTween.rotateAround(shiningBackground, Vector3.forward, 360, 30f).setLoopClamp();
+            FindObjectOfType<LevelLoader>().RestartWholeGame();
         }
 
         public void RestartGame()
         {
-            PlayerPrefs.DeleteKey("playerLevel");
-            SceneManager.LoadScene(mainMenuIndex);
+            FindObjectOfType<LevelLoader>().LoadMainMenu();
         }
         
     }

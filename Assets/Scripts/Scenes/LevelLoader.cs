@@ -87,6 +87,12 @@ namespace Twinster.Scenes
             SceneManager.LoadScene(themesStoreIndex);
         }
 
+        public void RestartWholeGame()
+        {
+            savedLevel = 0;
+            CaptureState();
+        }
+
         public object CaptureState()
         {
             return savedLevel;

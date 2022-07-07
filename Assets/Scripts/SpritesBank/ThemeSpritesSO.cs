@@ -12,7 +12,7 @@ namespace Twinster.Sprites
     
         public Sets[] sets = null;
         
-        [Space(5)]       
+        [Space(5)]
         [Header("Stats:")]
         [Space(3)]
         [Tooltip("Can the player select to use this theme?")]
@@ -69,6 +69,11 @@ namespace Twinster.Sprites
         public Sprite GetThemeBackground()
         {
             return background;
+        }
+
+        public void SetAsAvailable()
+        {
+            isAvailable = true;
         }
 
         public bool GetIsAvailable {
