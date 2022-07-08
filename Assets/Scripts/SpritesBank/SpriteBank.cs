@@ -10,8 +10,8 @@ namespace Twinster.Sprites
 {
     public class SpriteBank : MonoBehaviour, ISaveable
     {
-        [SerializeField] ThemeNames activeTheme = ThemeNames.Generic;
-        public ThemeNames ActiveTheme { get { return activeTheme; } }
+        //[SerializeField] ThemeNames activeThemeName = ThemeNames.Generic;
+        //public ThemeNames ActiveTheme { get { return activeThemeName; } }
 
         [SerializeField] ThemeSpritesSO activeThemeSO;      // serialized for debugging.
 
@@ -47,18 +47,14 @@ namespace Twinster.Sprites
             return sprite;
         }
 
-        public void SetTheme(ThemeNames theme)
+        public void SetActiveTheme(ThemeNames theme)
         {
-            activeTheme = theme;
-            
-            //CaptureState();
-        }
+            //string themeNameString = theme.ToString();
+            //this.themeNameString = themeNameString;
+            //activeTheme = (ThemeNames)System.Enum.Parse( typeof(ThemeNames), themeNameString);
 
-        public void SaveTheme(string themeNameString)
-        {
-            this.themeNameString = themeNameString;
-            activeTheme = (ThemeNames)System.Enum.Parse( typeof(ThemeNames), themeNameString);
-            activeThemeSO = Resources.Load<ThemeSpritesSO>($"Themes/{activeTheme}");
+            //activeThemeSO = Resources.Load<ThemeSpritesSO>($"Themes/{activeThemeName}");
+            activeThemeSO = Resources.Load<ThemeSpritesSO>($"Themes/{theme.ToString()}");
             CaptureState();
             FindObjectOfType<SavingWrapper>().Save();
         }
@@ -122,10 +118,15 @@ namespace Twinster.Sprites
             return activeThemeSO.GetThemeBackground();
         }
 
+        public ThemeNames GetActiveThemeName()
+        {
+            return activeThemeSO.GetThemeName();
+        }
+
         public object CaptureState()
         {
             //return activeTheme;
-            return themeNameString;
+            return activeThemeSO.GetThemeName().ToString();
         }
 
         public void RestoreState(object state)
@@ -135,8 +136,8 @@ namespace Twinster.Sprites
             if (state != null)
             {
                 Debug.Log("Theme is loaded from sprite bank.");
-                activeTheme = (ThemeNames)System.Enum.Parse( typeof(ThemeNames), (string)state);
-                activeThemeSO = Resources.Load<ThemeSpritesSO>($"Themes/{activeTheme}");
+                //activeThemeName = (ThemeNames)System.Enum.Parse( typeof(ThemeNames), (string)state);
+                activeThemeSO = Resources.Load<ThemeSpritesSO>($"Themes/{(string)state}");
             }
         }
     }

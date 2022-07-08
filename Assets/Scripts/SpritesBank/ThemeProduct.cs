@@ -62,7 +62,7 @@ namespace Twinster.Sprites
         {
             if (themesData.GetIsAvailable(myThemeName))
             {
-                if (myThemeName == spriteBank.ActiveTheme)
+                if (myThemeName == spriteBank.GetActiveThemeName())
                 {
                     currentStatus = ProductStatus.Active;
                 }
@@ -142,7 +142,7 @@ namespace Twinster.Sprites
 
         private void SetAsActiveStatus()
         {
-            spriteBank.SaveTheme(myThemeName.ToString());
+            spriteBank.SetActiveTheme(myThemeName);
             currentStatus = ProductStatus.Active;
             SetProductStatus(currentStatus);
         }
