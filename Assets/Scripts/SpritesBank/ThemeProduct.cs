@@ -22,11 +22,13 @@ namespace Twinster.Sprites
         [SerializeField] GameObject forPurchaseStatus, activeStatus, availableStatus;
         [SerializeField] Image productImage, activeBackground;
         [SerializeField] SpriteBank spriteBank;
+        [SerializeField] ThemesData themesData;
         [SerializeField] StarsBank starBank;
 
         // Stats:
         ProductStatus currentStatus;
-        
+        ThemeNames myThemeName;
+
         // Events:
         public static event Action<ThemeNames> onNewProductSelected;
 
@@ -40,6 +42,7 @@ namespace Twinster.Sprites
         }
 
         private void Start() {
+            myThemeName = theme.GetThemeName();
             UpdateProductStatus();
         }
 
@@ -57,9 +60,9 @@ namespace Twinster.Sprites
 
         private void UpdateProductStatus()
         {
-            if (theme.GetIsAvailable)
+            if (themesData.GetIsAvailable(myThemeName))
             {
-                if (theme.GetThemeName() == spriteBank.ActiveTheme)
+                if (myThemeName == spriteBank.ActiveTheme)
                 {
                     currentStatus = ProductStatus.Active;
                 }
@@ -130,7 +133,7 @@ namespace Twinster.Sprites
 
         private void RemoveActiveStatus(ThemeNames selectedTheme)
         {
-            if (theme.GetThemeName() != selectedTheme && currentStatus == ProductStatus.Active)
+            if (myThemeName != selectedTheme && currentStatus == ProductStatus.Active)
             {
                 currentStatus = ProductStatus.AvailableForSelection;
                 SetProductStatus(currentStatus);
@@ -139,7 +142,7 @@ namespace Twinster.Sprites
 
         private void SetAsActiveStatus()
         {
-            spriteBank.SaveTheme(theme.GetThemeName().ToString());
+            spriteBank.SaveTheme(myThemeName.ToString());
             currentStatus = ProductStatus.Active;
             SetProductStatus(currentStatus);
         }
@@ -159,16 +162,16 @@ namespace Twinster.Sprites
                     SetAsActiveStatus();
                     if (onNewProductSelected != null)
                     {
-                        onNewProductSelected(theme.GetThemeName());
+                        onNewProductSelected(myThemeName);
                     }
                     break;
                 case ProductStatus.AvailableForPurchase:
-                    theme.SetAsAvailable();
+                    themesData.ChangeThemeAvailability(myThemeName, true);
                     SetAsActiveStatus();
                     starBank.WithdrawStars(price);
                     if (onNewProductSelected != null)
                     {
-                        onNewProductSelected(theme.GetThemeName());
+                        onNewProductSelected(myThemeName);
                     }
                     break;
                 case ProductStatus.NotEnoughStars:

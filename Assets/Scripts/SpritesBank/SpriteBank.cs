@@ -16,12 +16,12 @@ namespace Twinster.Sprites
         [SerializeField] ThemeSpritesSO activeThemeSO;      // serialized for debugging.
 
         [SerializeField] List<Sprite> activeSet = null;
-        
+        /*
         [Space(5)]
         [Header("Themes SO:")]
         [Space(3)]
-        [SerializeField] ThemeSpritesSO[] themes = null;
-
+        [SerializeField] ThemeSpritesSO[] themes = null;*/
+        [Space(5)]
         [SerializeField] ThemeNames defaultTheme = ThemeNames.Generic;
         [SerializeField] ThemeSets defaultSetName = ThemeSets.All;
 
@@ -29,7 +29,6 @@ namespace Twinster.Sprites
 
 
         private void Start() {
-            Debug.Log("activeThemeSO name is: " + activeThemeSO.GetThemeName());
             if (activeThemeSO == null)
             {
                 Debug.Log("You are using the default Theme!");
@@ -84,23 +83,6 @@ namespace Twinster.Sprites
                 return;
             }
 
-            /*foreach (ThemeSpritesSO theme in themes)
-            {
-                if (theme.GetThemeName() != activeTheme) continue;
-
-                foreach (ThemeSpritesSO.Sets set in theme.sets)
-                {
-                    if (set.GetSetName() != chosenSet) continue;
-
-                    for (int i = 0 ; i < set.GetSpriteBankLengh() ; i++)
-                    {
-                        activeSet.Add(set.GetSprite(i));
-                    }
-
-                    return;
-                }
-            }*/
-
             // Chosen set is not present. Default set will be selected and used.
             Debug.LogError("Chosen set is not present. Using default set.");
 
@@ -148,12 +130,11 @@ namespace Twinster.Sprites
 
         public void RestoreState(object state)
         {
-            Debug.Log("RestoreState is called from SpriteBank");
-            //Debug.Log($"Active theme is: {(string)activeTheme}");
-            //Debug.Log($"Active theme is: {(ThemeNames)state}");
-            //activeTheme = (ThemeNames)state;
+            Debug.Log($"state is: {(object)state}");
+
             if (state != null)
             {
+                Debug.Log("Theme is loaded from sprite bank.");
                 activeTheme = (ThemeNames)System.Enum.Parse( typeof(ThemeNames), (string)state);
                 activeThemeSO = Resources.Load<ThemeSpritesSO>($"Themes/{activeTheme}");
             }

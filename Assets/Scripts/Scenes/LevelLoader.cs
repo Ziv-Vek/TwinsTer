@@ -13,7 +13,16 @@ namespace Twinster.Scenes
         [SerializeField] int savedLevel = 0;    // serialized for debugging
         [SerializeField] int levelIntervalsToShowAds = 3;
 
-        private void Start() {
+        /* private void Awake()
+         {
+             if (FindObjectOfType<SavingWrapper>() != null)
+             {
+                 FindObjectOfType<SavingWrapper>().Load();
+             }
+         }*/
+
+        private void Start()
+        {
             if (FindObjectOfType<SavingWrapper>() != null)
             {
                 FindObjectOfType<SavingWrapper>().Load();

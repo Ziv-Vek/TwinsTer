@@ -360,6 +360,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd609e660b506dc45bcd5c3a3022b50a, type: 3}
+--- !u!114 &991796687 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8084896832175331050, guid: dd609e660b506dc45bcd5c3a3022b50a, type: 3}
+  m_PrefabInstance: {fileID: 991796686}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a655bcda166ec7a439b3a05977090f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1191796243 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 408438810861521628, guid: 0ae53238444abac468e3326b8da546ae, type: 3}
@@ -609,6 +620,10 @@ PrefabInstance:
       propertyPath: spriteBank
       value: 
       objectReference: {fileID: 570590559}
+    - target: {fileID: 306295382990540841, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
+      propertyPath: themesData
+      value: 
+      objectReference: {fileID: 991796687}
     - target: {fileID: 416472536001487094, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -906,6 +921,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 570590559}
     - target: {fileID: 5178374988062823126, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
+      propertyPath: themesData
+      value: 
+      objectReference: {fileID: 991796687}
+    - target: {fileID: 5178374988062823126, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: onNewThemeSelect.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -998,6 +1017,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 570590559}
     - target: {fileID: 7736057790937577807, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
+      propertyPath: themesData
+      value: 
+      objectReference: {fileID: 991796687}
+    - target: {fileID: 7736057790937577807, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: onNewThemeSelect.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1069,6 +1092,10 @@ PrefabInstance:
       propertyPath: spriteBank
       value: 
       objectReference: {fileID: 570590559}
+    - target: {fileID: 8523618690700854788, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
+      propertyPath: themesData
+      value: 
+      objectReference: {fileID: 991796687}
     - target: {fileID: 8632728140137727914, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: m_IsActive
       value: 0
