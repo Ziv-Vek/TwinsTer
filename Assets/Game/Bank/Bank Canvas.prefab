@@ -852,6 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxViewsBeforeAddEnabled: 3
+  starBank: {fileID: 0}
   starsText: {fileID: 8625355809873502491}
 --- !u!1 &8625355808724374785
 GameObject:
@@ -919,7 +920,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d48ee6d59dc26bb43bddac82a1dba168, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bff306c10f608d44f827f1ef204a93b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
