@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Space
   m_EditorClassIdentifier: 
   theme: 3
-  background: {fileID: 21300000, guid: 4e63fd92f18079b4c9bfd7f3747c5344, type: 3}
+  background: {fileID: 21300000, guid: c0ac02ad80b817046975964d374fb469, type: 3}
+  backgroundColor:
+    serializedVersion: 2
+    rgba: 4294967295
   sets:
   - fontName: Regular
     setName: 0

@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Generic
   m_EditorClassIdentifier: 
   theme: 0
-  background: {fileID: 21300000, guid: 21477fb490d37494a81c403e5e8e0239, type: 3}
+  background: {fileID: 21300000, guid: 30cf856ae7a9f4e44b5ef213f8f5801b, type: 3}
+  backgroundColor:
+    serializedVersion: 2
+    rgba: 4286282619
   sets:
   - fontName: All
     setName: 0

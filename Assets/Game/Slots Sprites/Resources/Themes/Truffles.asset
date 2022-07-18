@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Truffles
   m_EditorClassIdentifier: 
   theme: 2
-  background: {fileID: 21300000, guid: 7fa01119e84ecbb4f95cddad978ad696, type: 3}
+  background: {fileID: 21300000, guid: b2ea7becba93b0c47813fe79780d6ac1, type: 3}
+  backgroundColor:
+    serializedVersion: 2
+    rgba: 4294967295
   sets:
   - fontName: Regular
     setName: 0

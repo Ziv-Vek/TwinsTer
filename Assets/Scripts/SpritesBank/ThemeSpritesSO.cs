@@ -9,6 +9,7 @@ namespace Twinster.Sprites
         [Space(3)]
         [SerializeField] ThemeNames theme;
         [SerializeField] Sprite background = null;
+        [SerializeField] Color32 backgroundColor = Color.white;
     
         public Sets[] sets = null;
         
@@ -69,6 +70,11 @@ namespace Twinster.Sprites
         public Sprite GetThemeBackground()
         {
             return background;
+        }
+
+        public Color32 GetBackgroundColor()
+        {
+            return backgroundColor;
         }
 
         public void SetAsAvailable()

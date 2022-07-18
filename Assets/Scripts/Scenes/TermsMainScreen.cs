@@ -6,12 +6,7 @@ namespace Twinster.Scenes
 {
     public class TermsMainScreen : MonoBehaviour
     {
-        LevelLoader levelLoader;
-
-        private void Awake()
-        {
-            levelLoader = FindObjectOfType<LevelLoader>();
-        }
+        [SerializeField] LevelLoader levelLoader;
 
         void Start()
         {

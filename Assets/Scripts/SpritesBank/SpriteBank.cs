@@ -118,6 +118,11 @@ namespace Twinster.Sprites
             return activeThemeSO.GetThemeBackground();
         }
 
+        public Color32 GetThemeBackgroundColor()
+        {
+            return activeThemeSO.GetBackgroundColor();
+        }
+
         public ThemeNames GetActiveThemeName()
         {
             return activeThemeSO.GetThemeName();
@@ -131,8 +136,6 @@ namespace Twinster.Sprites
 
         public void RestoreState(object state)
         {
-            Debug.Log($"state is: {(object)state}");
-
             if (state != null)
             {
                 Debug.Log("Theme is loaded from sprite bank.");

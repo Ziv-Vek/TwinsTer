@@ -1213,16 +1213,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7887915163875235824, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887915163875235824, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: m_Color.b
-      value: 0.6666667
+      value: 0.5921569
       objectReference: {fileID: 0}
     - target: {fileID: 7887915163875235824, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: m_Color.g
-      value: 0.3882353
+      value: 0.85882354
       objectReference: {fileID: 0}
     - target: {fileID: 7887915163875235824, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: m_Color.r
-      value: 0.23137255
+      value: 0.28235295
       objectReference: {fileID: 0}
     - target: {fileID: 8523618690700854788, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: price

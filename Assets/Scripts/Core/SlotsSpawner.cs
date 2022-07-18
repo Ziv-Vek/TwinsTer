@@ -74,6 +74,7 @@ namespace Twinster.Core
         private void PopulateBackground()
         {
             themeBackgroundImage.sprite = spriteBank.GetThemeBackground();
+            themeBackgroundImage.color = spriteBank.GetThemeBackgroundColor();
         }
 
         private void PopulateSingleSlots()

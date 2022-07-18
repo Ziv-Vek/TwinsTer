@@ -48,7 +48,7 @@ MonoBehaviour:
   firstLevelIndex: 4
   themesStoreIndex: 3
   savedLevel: 0
-  levelIntervalsToShowAds: 3
+  levelIntervalsToShowAds: 4
 --- !u!114 &9173997483058314521
 MonoBehaviour:
   m_ObjectHideFlags: 0
