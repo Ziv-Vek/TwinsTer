@@ -14,6 +14,7 @@ namespace Twinster.Core
 
         public void LoadMainMenu()
         {
+            FindObjectOfType<LevelLoader>().TinySauceGoToMainMenu();
             FindObjectOfType<LevelLoader>().LoadMainMenu();
         }
     }

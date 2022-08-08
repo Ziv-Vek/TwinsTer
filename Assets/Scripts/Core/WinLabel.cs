@@ -29,6 +29,7 @@ namespace Twinster.Core
         float remainingTimeToDisplay = 0;
         int starsGainFromTimer = 0;
         bool isCoundownFinished = false;
+        LevelLoader levelLoader;
 
         void Start()
         {
@@ -36,7 +37,9 @@ namespace Twinster.Core
             UpdateStarsDisplay();
             remainingTimeToDisplay = FindObjectOfType<Timer>().GetTimeToDisplay();
             starsGainFromTimer = Mathf.FloorToInt(DisplayTime());
-            FindObjectOfType<LevelLoader>().SaveLevel();
+            levelLoader = FindObjectOfType<LevelLoader>();
+            levelLoader.SaveLevel();
+            levelLoader.TinySauceWinLevel();
 
             StartCoroutine("ReduceRemainingTime");
 
@@ -54,7 +57,7 @@ namespace Twinster.Core
                 FindObjectOfType<MusicManager>().UnPauseMusic();
             }
             
-            FindObjectOfType<LevelLoader>().CheckAdDisplay();
+            levelLoader.CheckAdDisplay();
         }
 
         private void UpdateStarsDisplay()

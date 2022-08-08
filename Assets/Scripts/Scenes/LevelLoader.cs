@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Twinster.Saving;
 using Twinster.Monetization;
+using System;
+using Twinster.Bank;
 
 namespace Twinster.Scenes
 {
@@ -29,12 +31,35 @@ namespace Twinster.Scenes
             }
         }
 
+        public void TinySauceBeginGame(int levelSaved)
+        {
+            TinySauce.OnGameStarted(levelSaved.ToString());
+        }
+        
+        public void TinySauceWinLevel()
+        {
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            int currentLevelNum = currentSceneIndex - firstLevelIndex + 1;
+            TinySauce.OnGameFinished(true, FindObjectOfType<StarsBank>().Stars, (currentLevelNum + 1).ToString());
+        }
+
+        public void TinySauceGoToMainMenu()
+        {
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            if (currentSceneIndex < firstLevelIndex) return; 
+
+            int currentLevelNum = currentSceneIndex - firstLevelIndex + 1;
+            TinySauce.OnGameFinished(false, FindObjectOfType<StarsBank>().Stars, currentLevelNum.ToString());
+        }
+
         public void StartGame()
         {
             if (savedLevel < firstLevelIndex)
             {
                 savedLevel = firstLevelIndex;
             }
+
+            TinySauceBeginGame(savedLevel);
 
             SceneManager.LoadScene(savedLevel);
     }
@@ -87,7 +112,7 @@ namespace Twinster.Scenes
             {
                 savingWrapper.Save();
             }
-            
+
             SceneManager.LoadScene(mainMenuIndex);
         }
 

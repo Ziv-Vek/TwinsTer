@@ -255,11 +255,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3111955730522015815, guid: 31d70f9aec1e8134882bf68ce54248be, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 121
+      value: -140.7
       objectReference: {fileID: 0}
     - target: {fileID: 3111955730522015864, guid: 31d70f9aec1e8134882bf68ce54248be, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3111955730522015864, guid: 31d70f9aec1e8134882bf68ce54248be, type: 3}
+      propertyPath: m_fontSize
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3111955730522015864, guid: 31d70f9aec1e8134882bf68ce54248be, type: 3}
       propertyPath: m_fontSizeBase

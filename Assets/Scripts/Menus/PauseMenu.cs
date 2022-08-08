@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Twinster.Scenes;
 
 namespace Twinster.Menus
 {
@@ -39,6 +40,7 @@ namespace Twinster.Menus
         public void LoadMainMenu()
         {
             Time.timeScale = 1;
+            FindObjectOfType<LevelLoader>().TinySauceGoToMainMenu();
             SceneManager.LoadScene(MAIN_MENU);
         }
     }

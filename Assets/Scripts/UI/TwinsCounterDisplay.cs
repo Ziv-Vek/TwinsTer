@@ -85,8 +85,8 @@ namespace Twinster.UI
             }
             else
             {
-                LeanTween.value(twinsCounterDisplay.gameObject, 100f, 115f, 0.2f).setOnUpdate(ChangeTwinsFontSize).setOnComplete( () => {
-                    LeanTween.value(twinsCounterDisplay.gameObject, 115f, 100f, 0.2f).setOnUpdate(ChangeTwinsFontSize).setOnComplete( () => LeanTween.cancel(twinsCounterDisplay.gameObject) );
+                LeanTween.value(twinsCounterDisplay.gameObject, 60f, 80f, 0.2f).setOnUpdate(ChangeTwinsFontSize).setOnComplete( () => {
+                    LeanTween.value(twinsCounterDisplay.gameObject, 80f, 60f, 0.2f).setOnUpdate(ChangeTwinsFontSize).setOnComplete( () => LeanTween.cancel(twinsCounterDisplay.gameObject) );
                     });
             }
         }
@@ -99,8 +99,8 @@ namespace Twinster.UI
             }
             else
             {
-                LeanTween.value(tripletsCounterDisplay.gameObject, 100f, 115f, 0.2f).setOnUpdate(ChangeTripletsFontSize).setOnComplete( () => {
-                    LeanTween.value(tripletsCounterDisplay.gameObject, 115f, 100f, 0.2f).setOnUpdate(ChangeTripletsFontSize).setOnComplete( () => LeanTween.cancel(tripletsCounterDisplay.gameObject) );
+                LeanTween.value(tripletsCounterDisplay.gameObject, 60f, 80f, 0.2f).setOnUpdate(ChangeTripletsFontSize).setOnComplete( () => {
+                    LeanTween.value(tripletsCounterDisplay.gameObject, 80f, 60f, 0.2f).setOnUpdate(ChangeTripletsFontSize).setOnComplete( () => LeanTween.cancel(tripletsCounterDisplay.gameObject) );
                     });
             }
         }

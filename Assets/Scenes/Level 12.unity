@@ -1330,6 +1330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Top UI Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 498357159856470390, guid: b398a73fa196cdc4aa1cc30e9e7f3a02, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 2371581880607979490, guid: b398a73fa196cdc4aa1cc30e9e7f3a02, type: 3}
       propertyPath: pauseMenuCanvas
       value: 
@@ -1421,6 +1425,14 @@ PrefabInstance:
     - target: {fileID: 6172957604842360094, guid: b398a73fa196cdc4aa1cc30e9e7f3a02, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296067380216690696, guid: b398a73fa196cdc4aa1cc30e9e7f3a02, type: 3}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296067380216690696, guid: b398a73fa196cdc4aa1cc30e9e7f3a02, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8819555247545040329, guid: b398a73fa196cdc4aa1cc30e9e7f3a02, type: 3}
       propertyPath: m_text

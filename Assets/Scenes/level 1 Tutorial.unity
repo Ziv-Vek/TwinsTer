@@ -660,6 +660,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot Selected Background
       objectReference: {fileID: 0}
+    - target: {fileID: 5218370179866677738, guid: 33afcc1ec233dd743b45f11ae5afb28c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8959739028192540426, guid: 33afcc1ec233dd743b45f11ae5afb28c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -738,7 +742,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662092838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.39, y: -2.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 943131684}
@@ -1316,6 +1320,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4817927694272594729, guid: 6cad338bf67813743a32042ad3e7d420, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817927694272594730, guid: 6cad338bf67813743a32042ad3e7d420, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817927694272594730, guid: 6cad338bf67813743a32042ad3e7d420, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.82
+      objectReference: {fileID: 0}
     - target: {fileID: 4817927695645064131, guid: 6cad338bf67813743a32042ad3e7d420, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1710,7 +1726,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 430843925427115132, guid: b398a73fa196cdc4aa1cc30e9e7f3a02, type: 3}
       propertyPath: m_PreserveAspect
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541009296157181641, guid: b398a73fa196cdc4aa1cc30e9e7f3a02, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 394.6
       objectReference: {fileID: 0}
     - target: {fileID: 2371581880607979490, guid: b398a73fa196cdc4aa1cc30e9e7f3a02, type: 3}
       propertyPath: pauseMenuCanvas
