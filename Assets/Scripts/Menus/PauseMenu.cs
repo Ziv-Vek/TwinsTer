@@ -40,7 +40,7 @@ namespace Twinster.Menus
         public void LoadMainMenu()
         {
             Time.timeScale = 1;
-            FindObjectOfType<LevelLoader>().TinySauceGoToMainMenu();
+            //FindObjectOfType<LevelLoader>().TinySauceGoToMainMenu();
             SceneManager.LoadScene(MAIN_MENU);
         }
     }

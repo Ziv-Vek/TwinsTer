@@ -39,7 +39,7 @@ namespace Twinster.Core
             starsGainFromTimer = Mathf.FloorToInt(DisplayTime());
             levelLoader = FindObjectOfType<LevelLoader>();
             levelLoader.SaveLevel();
-            levelLoader.TinySauceWinLevel();
+            //levelLoader.TinySauceWinLevel();
 
             StartCoroutine("ReduceRemainingTime");
 

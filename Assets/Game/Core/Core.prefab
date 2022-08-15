@@ -448,6 +448,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TinySauce
       objectReference: {fileID: 0}
+    - target: {fileID: 1384633641988006, guid: 0b960778462d34f7283156e4edafb7a2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4464613669252742, guid: 0b960778462d34f7283156e4edafb7a2, type: 3}
       propertyPath: m_RootOrder
       value: 8

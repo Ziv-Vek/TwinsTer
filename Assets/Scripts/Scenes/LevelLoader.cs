@@ -31,7 +31,7 @@ namespace Twinster.Scenes
             }
         }
 
-        public void TinySauceBeginGame(int levelSaved)
+        /*public void TinySauceBeginGame(int levelSaved)
         {
             TinySauce.OnGameStarted(levelSaved.ToString());
         }
@@ -50,7 +50,7 @@ namespace Twinster.Scenes
 
             int currentLevelNum = currentSceneIndex - firstLevelIndex + 1;
             TinySauce.OnGameFinished(false, FindObjectOfType<StarsBank>().Stars, currentLevelNum.ToString());
-        }
+        }*/
 
         public void StartGame()
         {
@@ -59,7 +59,7 @@ namespace Twinster.Scenes
                 savedLevel = firstLevelIndex;
             }
 
-            TinySauceBeginGame(savedLevel);
+            //TinySauceBeginGame(savedLevel);
 
             SceneManager.LoadScene(savedLevel);
     }
