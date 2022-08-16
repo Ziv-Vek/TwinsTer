@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -280,6 +281,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Bubble burstv_3: -5968629511776525564
+      Bubble burstv_1: 2039561288545850978
+      Bubble burstv_0: -9087499438093665338
+      Bubble burstv_5: -8000839806500317960
+      Bubble burstv_4: 8803871656559133483
+      Bubble burstv_2: -16223882737337378
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
