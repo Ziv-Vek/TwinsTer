@@ -429,6 +429,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 972295225}
   m_Father: {fileID: 0}
@@ -1163,6 +1164,10 @@ PrefabInstance:
     - target: {fileID: 8576473292143328763, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: loseCanvas
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8576473292143328763, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
+      propertyPath: isQuickLevel
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8576473292143328763, guid: e1f37691fa4de2a4a8ba46a9a77e732d, type: 3}
       propertyPath: numberOfTwins

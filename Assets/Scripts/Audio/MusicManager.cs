@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Twinster.Core;
+using UnityEngine.SceneManagement;
 
 namespace Twinster.Audio
 {
@@ -60,11 +61,15 @@ namespace Twinster.Audio
         private void OnEnable() {
             LevelSettings.eventLevelComplete += PauseMusic;
             LevelSettings.eventLevelLost += PauseMusic;
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnDisable() {
             LevelSettings.eventLevelComplete -= PauseMusic;
             LevelSettings.eventLevelLost -= PauseMusic;
+
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         public bool GetIsMusicEnabled()
@@ -87,6 +92,23 @@ namespace Twinster.Audio
         public void UnPauseMusic()
         {
             myAudioSource.UnPause();
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (isMusicEnabled && (myAudioSource.isPlaying == false))
+            {
+                if (scene.name == "__Main Menu")
+                {
+                    myAudioSource.time = 0.00f;
+                    myAudioSource.Play();
+                }
+                else
+                {
+                    myAudioSource.Play();
+                }
+            }
+                
         }
 
         private void PauseMusic()

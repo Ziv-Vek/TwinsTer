@@ -23,6 +23,30 @@ namespace Twinster.Menus
         [SerializeField] Image backgroundImage = null;
         [SerializeField] SpriteBank spriteBank = null;
 
+        PlayerInput playerInput;
+
+#if UNITY_STANDALONE_WIN
+        bool isPlatformMobile = false;
+#elif UNITY_ANDROID
+        bool isPlatformMobile = true;
+#elif UNITY_IOS
+        bool isPlatformMobile = true;
+#endif
+
+        private void Awake()
+        {
+            playerInput = FindObjectOfType<PlayerInput>();
+            playerInput.onActionTriggered += PlayerInput_onActionTriggered;
+        }
+
+        private void PlayerInput_onActionTriggered(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                
+            }
+        }
+
         [System.Serializable]
         public class MainMenuBackground
         {
@@ -59,6 +83,44 @@ namespace Twinster.Menus
 
         private void Update()
         {
+            GetMobileInput();
+            if (!isPlatformMobile)
+            {
+                //GetMobileInput();
+            }
+            else
+            {
+                //GetWindowsInput();
+            }
+        }
+
+        private void GetWindowsInput()
+        {
+            {
+                // Check if player is hitting a button or just taps blank space to play the game.
+                Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+                Ray ray = Camera.main.ScreenPointToRay(touchPosition);
+                RaycastHit hit;
+                bool hasHit = Physics.Raycast(ray, out hit);
+                if (!hasHit)
+                {
+                    LoadGame();
+                }
+                else
+                {
+                    bool isHittingButton = hit.collider.gameObject.CompareTag("Button");
+                    if (isHittingButton)
+                    {
+                        // DO nothing?
+                    }
+                }
+
+                // DO nothing?
+            }
+        }
+
+        private void GetMobileInput()
+        {
             if (Touchscreen.current.primaryTouch.press.isPressed)
             {
                 // Check if player is hitting a button or just taps blank space to play the game.
@@ -81,7 +143,6 @@ namespace Twinster.Menus
 
                 // DO nothing?
             }
-
         }
 
         public void ShowSettings()

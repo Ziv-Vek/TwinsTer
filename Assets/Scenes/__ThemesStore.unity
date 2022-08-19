@@ -518,6 +518,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e791f76b2de76a40b250d85f2e009bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1762604633
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1922640512864241195, guid: 253c6fa68e9880e45b66e482b1019170, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715599407715712441, guid: 253c6fa68e9880e45b66e482b1019170, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715599407715712441, guid: 253c6fa68e9880e45b66e482b1019170, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715599407715712441, guid: 253c6fa68e9880e45b66e482b1019170, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715599407715712441, guid: 253c6fa68e9880e45b66e482b1019170, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715599407715712441, guid: 253c6fa68e9880e45b66e482b1019170, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715599407715712441, guid: 253c6fa68e9880e45b66e482b1019170, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715599407715712441, guid: 253c6fa68e9880e45b66e482b1019170, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715599407715712441, guid: 253c6fa68e9880e45b66e482b1019170, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715599407715712441, guid: 253c6fa68e9880e45b66e482b1019170, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715599407715712441, guid: 253c6fa68e9880e45b66e482b1019170, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715599407715712441, guid: 253c6fa68e9880e45b66e482b1019170, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 253c6fa68e9880e45b66e482b1019170, type: 3}
 --- !u!1 &1981979396
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +654,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -618,7 +676,7 @@ PrefabInstance:
       objectReference: {fileID: 2180264, guid: 7594c293876adb34fa00cade11937ce5, type: 2}
     - target: {fileID: 306295382990540841, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: price
-      value: 500
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 306295382990540841, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: starBank
@@ -1146,7 +1204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7736057790937577807, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: price
-      value: 800
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7736057790937577807, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: starBank
@@ -1246,7 +1304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8523618690700854788, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: price
-      value: 300
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8523618690700854788, guid: 8b4e96d79cf3ed64f96081f8219c4d2e, type: 3}
       propertyPath: starBank

@@ -75,14 +75,14 @@ namespace Twinster.Scenes
             FindObjectOfType<SavingWrapper>().Save();
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             int currentLevelNum = currentSceneIndex - firstLevelIndex + 1;
-            if ((currentLevelNum % 3) == 0)
+            /*if ((currentLevelNum % 3) == 0)
             {
                 FindObjectOfType<AdManager>().ShowInterstitialAd();
             }
             else
-            {
+            {*/
                 LoadNextLevel();
-            }
+            //}
         }
 
         public void SaveLevel()

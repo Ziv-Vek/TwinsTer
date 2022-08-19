@@ -10,7 +10,9 @@ namespace Twinster.Monetization
     {
         [SerializeField] bool testMode = true;
 
-#if UNITY_ANDROID
+#if UNITY_STANDALONE_WIN
+        string gameId = "";
+#elif UNITY_ANDROID
         string gameId = "4793633";
 #elif UNITY_IOS
         string gameId = "4793632";
