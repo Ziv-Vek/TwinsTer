@@ -72,3 +72,10 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 /[Aa]ssets/Asset Packs/
+Assets/Firebase/
+Assets/Asset Packs/
+Assets/Editor Default Resources/Firebase/
+Assets/GeneratedLocalRepo/Firebase/
+Assets/Plugins/iOS/
+Assets/Resources/GameAnalytics/
+Assets/Resources/GameAnalytics.meta

@@ -31,10 +31,8 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
-    - Coffee.SoftMaskForUGUI
     - Cinemachine
     - PsdPlugin
-    - Coffee.SoftMaskForUGUI.Editor
     showAdvancedSettings: 1
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

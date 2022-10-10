@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Twinster.Scenes;
 using UnityEngine;
-using UnityEngine.Advertisements;
+//using UnityEngine.Advertisements;
 
 namespace Twinster.Monetization
 {
-    public class AdManager : MonoBehaviour, IUnityAdsListener
+    public class AdManager : MonoBehaviour//, IUnityAdsListener
     {
-        [SerializeField] bool testMode = true;
+       /* [SerializeField] bool testMode = true;
 
 #if UNITY_STANDALONE_WIN
         string gameId = "";
@@ -60,7 +60,7 @@ namespace Twinster.Monetization
         public void OnUnityAdsReady(string placementId)
         {
             Debug.Log($"Ad {placementId} is ready.");
-        }
+        }*/
     }
 }
 

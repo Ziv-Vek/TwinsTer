@@ -1,0 +1,176 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.3'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+// Android Resolver Repos Start
+([rootProject] + (rootProject.subprojects as List)).each { project ->
+    project.repositories {
+        def unityProjectPath = $/file:///**DIR_UNITYPROJECT**/$.replace("\\", "/")
+        maven {
+            url "https://maven.google.com"
+        }
+        maven {
+            url (unityProjectPath + "/Assets/GeneratedLocalRepo/Firebase/m2repository") // Assets/Firebase/Editor/AnalyticsDependencies.xml:18, Assets/Firebase/Editor/AppDependencies.xml:22, Assets/Firebase/Editor/CrashlyticsDependencies.xml:20, Assets/Firebase/Editor/MessagingDependencies.xml:22, Assets/Firebase/Editor/RemoteConfigDependencies.xml:20
+        }
+        maven {
+            url "https://android-sdk.is.com/" // Assets/IronSource/Editor/IronSourceSDKDependencies.xml:8, Assets/IronSource/Editor/ISAdColonyAdapterDependencies.xml:16, Assets/IronSource/Editor/ISAppLovinAdapterDependencies.xml:8, Assets/IronSource/Editor/ISFacebookAdapterDependencies.xml:16, Assets/IronSource/Editor/ISFyberAdapterDependencies.xml:16, Assets/IronSource/Editor/ISInMobiAdapterDependencies.xml:8, Assets/IronSource/Editor/ISMaioAdapterDependencies.xml:9, Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:8, Assets/IronSource/Editor/ISTapJoyAdapterDependencies.xml:8, Assets/IronSource/Editor/ISUnityAdsAdapterDependencies.xml:8, Assets/IronSource/Editor/ISVungleAdapterDependencies.xml:16
+        }
+        maven {
+            url "https://maven.google.com/" // Assets/IronSource/Editor/IronSourceSDKDependencies.xml:16, Assets/IronSource/Editor/IronSourceSDKDependencies.xml:32, Assets/IronSource/Editor/ISAdColonyAdapterDependencies.xml:8, Assets/IronSource/Editor/ISAppLovinAdapterDependencies.xml:15, Assets/IronSource/Editor/ISFacebookAdapterDependencies.xml:8, Assets/IronSource/Editor/ISInMobiAdapterDependencies.xml:22, Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:15, Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:22, Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:29, Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:36, Assets/IronSource/Editor/ISUnityAdsAdapterDependencies.xml:15
+        }
+        maven {
+            url "https://repo.maven.apache.org/maven2/" // Assets/IronSource/Editor/ISFyberAdapterDependencies.xml:8, Assets/IronSource/Editor/ISInMobiAdapterDependencies.xml:15
+        }
+        maven {
+            url "https://imobile-maio.github.io/maven" // Assets/IronSource/Editor/ISMaioAdapterDependencies.xml:16
+        }
+        maven {
+            url "https://sdk.tapjoy.com/" // Assets/IronSource/Editor/ISTapJoyAdapterDependencies.xml:15
+        }
+        maven {
+            url "https://jitpack.io/" // Assets/IronSource/Editor/ISVungleAdapterDependencies.xml:8
+        }
+        mavenLocal()
+        mavenCentral()
+    }
+}
+// Android Resolver Repos End
+apply plugin: 'com.android.library'
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:multidex:1.0.3'
+  	implementation 'com.android.installreferrer:installreferrer:1.0'
+// Android Resolver Dependencies Start
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0' // Assets/IronSource/Editor/ISInMobiAdapterDependencies.xml:22
+    implementation 'com.adcolony:sdk:4.7.1' // Assets/IronSource/Editor/ISAdColonyAdapterDependencies.xml:8
+    implementation 'com.android.support:appcompat-v7:25.3.1' // Facebook.Unity.Editor.AndroidSupportLibraryResolver.addSupportLibraryDependency
+    implementation 'com.android.support:cardview-v7:25.3.1' // Facebook.Unity.Editor.AndroidSupportLibraryResolver.addSupportLibraryDependency
+    implementation 'com.android.support:customtabs:25.3.1' // Facebook.Unity.Editor.AndroidSupportLibraryResolver.addSupportLibraryDependency
+    implementation 'com.android.support:support-v4:25.3.1' // Facebook.Unity.Editor.AndroidSupportLibraryResolver.addSupportLibraryDependency
+    implementation 'com.applovin:applovin-sdk:11.4.4' // Assets/IronSource/Editor/ISAppLovinAdapterDependencies.xml:15
+    implementation 'com.facebook.android:audience-network-sdk:6.11.0' // Assets/IronSource/Editor/ISFacebookAdapterDependencies.xml:8
+    implementation 'com.facebook.android:facebook-applinks:[11.0, 12)' // Assets/Moonee/MoonSDK/Analytics/Facebook/3rdParty/FacebookSDK/Plugins/Editor/Dependencies.xml:6
+    implementation 'com.facebook.android:facebook-core:[11.0, 12)' // Assets/Moonee/MoonSDK/Analytics/Facebook/3rdParty/FacebookSDK/Plugins/Editor/Dependencies.xml:5
+    implementation 'com.facebook.android:facebook-gamingservices:[11.0, 12)' // Assets/Moonee/MoonSDK/Analytics/Facebook/3rdParty/FacebookSDK/Plugins/Editor/Dependencies.xml:9
+    implementation 'com.facebook.android:facebook-login:[11.0, 12)' // Assets/Moonee/MoonSDK/Analytics/Facebook/3rdParty/FacebookSDK/Plugins/Editor/Dependencies.xml:7
+    implementation 'com.facebook.android:facebook-share:[11.0, 12)' // Assets/Moonee/MoonSDK/Analytics/Facebook/3rdParty/FacebookSDK/Plugins/Editor/Dependencies.xml:8
+    implementation 'com.fyber:marketplace-sdk:8.1.5' // Assets/IronSource/Editor/ISFyberAdapterDependencies.xml:8
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.13.3' // Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:22
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.13.3' // Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:29
+    implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1' // Assets/IronSource/Editor/IronSourceSDKDependencies.xml:16
+    implementation 'com.google.android.gms:play-services-appset:16.0.2' // Assets/Moonee/MoonSDK/Analytics/GameAnalytics/3rdParty/GameAnalytics/Editor/Android/Dependencies.xml:4
+    implementation 'com.google.android.gms:play-services-base:18.1.0' // Assets/Firebase/Editor/AppDependencies.xml:17
+    implementation 'com.google.android.gms:play-services-basement:18.0.0' // Assets/IronSource/Editor/IronSourceSDKDependencies.xml:32
+    implementation 'com.google.android.instantapps:instantapps:1.1.0' // Assets/Moonee/MoonSDK/Analytics/GameAnalytics/3rdParty/GameAnalytics/Editor/Android/Dependencies.xml:3
+    implementation 'com.google.firebase:firebase-analytics:21.1.0' // Assets/Firebase/Editor/RemoteConfigDependencies.xml:15
+    implementation 'com.google.firebase:firebase-analytics-unity:9.3.0' // Assets/Firebase/Editor/AnalyticsDependencies.xml:18
+    implementation 'com.google.firebase:firebase-app-unity:9.3.0' // Assets/Firebase/Editor/AppDependencies.xml:22
+    implementation 'com.google.firebase:firebase-common:20.1.1' // Assets/Firebase/Editor/AppDependencies.xml:13
+    implementation 'com.google.firebase:firebase-config:21.1.1' // Assets/Firebase/Editor/RemoteConfigDependencies.xml:13
+    implementation 'com.google.firebase:firebase-config-unity:9.3.0' // Assets/Firebase/Editor/RemoteConfigDependencies.xml:20
+    implementation 'com.google.firebase:firebase-crashlytics-ndk:18.2.11' // Assets/Firebase/Editor/CrashlyticsDependencies.xml:13
+    implementation 'com.google.firebase:firebase-crashlytics-unity:9.3.0' // Assets/Firebase/Editor/CrashlyticsDependencies.xml:20
+    implementation 'com.google.firebase:firebase-iid:21.1.0' // Assets/Firebase/Editor/MessagingDependencies.xml:17
+    implementation 'com.google.firebase:firebase-messaging:23.0.6' // Assets/Firebase/Editor/MessagingDependencies.xml:13
+    implementation 'com.google.firebase:firebase-messaging-unity:9.3.0' // Assets/Firebase/Editor/MessagingDependencies.xml:22
+    implementation 'com.inmobi.monetization:inmobi-ads:10.0.8' // Assets/IronSource/Editor/ISInMobiAdapterDependencies.xml:15
+    implementation 'com.ironsource.adapters:adcolonyadapter:4.3.12' // Assets/IronSource/Editor/ISAdColonyAdapterDependencies.xml:16
+    implementation 'com.ironsource.adapters:applovinadapter:4.3.33' // Assets/IronSource/Editor/ISAppLovinAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:facebookadapter:4.3.36' // Assets/IronSource/Editor/ISFacebookAdapterDependencies.xml:16
+    implementation 'com.ironsource.adapters:fyberadapter:4.3.21' // Assets/IronSource/Editor/ISFyberAdapterDependencies.xml:16
+    implementation 'com.ironsource.adapters:inmobiadapter:4.3.15' // Assets/IronSource/Editor/ISInMobiAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:maioadapter:4.1.10' // Assets/IronSource/Editor/ISMaioAdapterDependencies.xml:9
+    implementation 'com.ironsource.adapters:mytargetadapter:4.1.13' // Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:tapjoyadapter:4.1.21' // Assets/IronSource/Editor/ISTapJoyAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:unityadsadapter:4.3.21' // Assets/IronSource/Editor/ISUnityAdsAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:vungleadapter:4.3.17' // Assets/IronSource/Editor/ISVungleAdapterDependencies.xml:16
+    implementation 'com.ironsource.sdk:mediationsdk:7.2.3.1' // Assets/IronSource/Editor/IronSourceSDKDependencies.xml:8
+    implementation 'com.maio:android-sdk:1.1.15' // Assets/IronSource/Editor/ISMaioAdapterDependencies.xml:16
+    implementation 'com.my.target:mytarget-sdk:5.15.0' // Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:15
+    implementation 'com.my.tracker:mytracker-sdk:3.0.0' // Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:36
+    implementation 'com.parse.bolts:bolts-android:1.4.0' // Assets/Moonee/MoonSDK/Analytics/Facebook/3rdParty/FacebookSDK/Plugins/Editor/Dependencies.xml:4
+    implementation 'com.tapjoy:tapjoy-android-sdk:12.10.0' // Assets/IronSource/Editor/ISTapJoyAdapterDependencies.xml:15
+    implementation 'com.unity3d.ads:unity-ads:4.1.0' // Assets/IronSource/Editor/ISUnityAdsAdapterDependencies.xml:15
+    implementation 'com.vungle:publisher-sdk-android:6.11.0' // Assets/IronSource/Editor/ISVungleAdapterDependencies.xml:8
+// Android Resolver Dependencies End
+    **DEPS**
+}
+
+// Android Resolver Exclusions Start
+android {
+  packagingOptions {
+      exclude ('/lib/armeabi/*' + '*')
+      exclude ('/lib/mips/*' + '*')
+      exclude ('/lib/mips64/*' + '*')
+      exclude ('/lib/x86/*' + '*')
+      exclude ('/lib/x86_64/*' + '*')
+  }
+}
+// Android Resolver Exclusions End
+android {
+    compileSdkVersion **APIVERSION**
+    buildToolsVersion '**BUILDTOOLS**'
+
+    defaultConfig {
+        multiDexEnabled true
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode **VERSIONCODE**
+        versionName '**VERSIONNAME**'
+        
+    }
+
+    dexOptions {
+        preDexLibraries false
+        javaMaxHeapSize "4g"
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    packagingOptions {
+       exclude  'jsr305_annotations/Jsr305_annotations.gwt.xml'
+    }
+
+    aaptOptions {
+        noCompress '.unity3d', '.ress', '.resource', '.obb' + unityStreamingAssets.tokenize(', ')
+        ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
+    }
+    **SIGN**
+
+    buildTypes {
+        debug {
+            jniDebuggable true
+        }
+        release {
+            minifyEnabled false
+            **SIGNCONFIG**
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}**REPOSITORIES**
+**IL_CPP_BUILD_SETUP**
+**SOURCE_BUILD_SETUP**
+**EXTERNAL_SOURCES**
